@@ -12,8 +12,7 @@ try
     {
         die('Erreur : '.$e->getMessage());
     }
-// Instanciation de la classe dérivée
-    
+
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
@@ -23,8 +22,9 @@ $pdf->SetFont('Times','B',12);
 $req = $bdd->query('SELECT * FROM factvue where idPrest='. $_GET['idprestation'].' and idClient ='. $_GET['idclient'].'');
 $facturation= $req->fetch();
 
+$chantierget=$facturation['chantierPrestation'];
 
-$requete=$bdd->query('SELECT*, month(date_service)as mois FROM service where num_cli='. $_GET['idclient'].'');
+$requete=$bdd->query('SELECT*, month(date_service) as mois FROM service where num_cli='. $_GET['idclient'].'');
 $service= $requete->fetch();
 
 $pdf->Cell(50,20,'Facturation:  '.$facturation['yearPrestation'].'-168',0,0,'C');
@@ -168,7 +168,7 @@ if(isset($service['prixService'])&& $_GET['idmois'] == $service['mois'])
 
 {
 
-$prixtotal=$service['prixService']+$facturation['prixFacture'];
+$prixtotal = $service['prixService']+$facturation['prixFacture'];
 
 
 $prixfinal='<table border="1">

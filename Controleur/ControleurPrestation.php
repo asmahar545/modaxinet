@@ -60,7 +60,7 @@ class ControleurPrestation extends Controleur
         $client=$this->client->getClient();
         
         $prestationtoute=$this->prestation->getPrestationParMois($id);
-        
+        $service=$this->prestation->getServiceMois($id);
         $list=$this->prestation->getPrestationParMois($id);
         $email1= $this->admin->getAdminEmail();
         $nom1=$this->admin->getAdminNom();
@@ -69,7 +69,7 @@ class ControleurPrestation extends Controleur
         $noma= $nom1['Prénom'];
             
         
-    $this->genererVue(array('prestationtoute'=>$prestationtoute,'id'=>$id,'clients'=>$client,'email' => $emaila,'nom'=>$noma,'list'=>$list));
+    $this->genererVue(array('prestationtoute'=>$prestationtoute,'id'=>$id,'clients'=>$client,'email' => $emaila,'nom'=>$noma,'list'=>$list,'service'=>$service));
 
          }
 

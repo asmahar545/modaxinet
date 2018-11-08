@@ -15,8 +15,75 @@
 <?php require 'Vue/_Commun/barreNavigation.php'; ?>
 <div class="row">
     <ul class="breadcrumb">
-    <li><span class="glyphicon glyphicon-home"></span> <a >Prestations</a></li>
+    <li><span class="glyphicon glyphicon-th"></span> <a >Prestations</a></li>
+    <li> <a >Service</a></li>
+    <button  type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#exampleModalLong"><span class="glyphicon glyphicon-wrench">
+      
+    </span></button>
+ 
+</button>
 </ul>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Services</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table id="example1"  class="table table-bordered table-striped">
+            <thead>
+
+
+                <tr>
+                    <th>N°</th>
+                    <th>Chantier</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Prix</th>
+                   
+                </tr>
+            </thead>
+       <?php $i=0 ?>
+            <?php foreach ($service as $prest): ?>
+
+                
+                <?php $i++ ?>
+             
+            <tr>      
+                
+                 
+                    <td> <?php echo $i ?></td>
+                    <td><?= $this->nettoyer($prest['chantier']) ?></td>
+                    <td><?= $this->nettoyer($prest['description']) ?></td>
+                    <td><?= $this->nettoyer($prest['date_service']) ?></td>
+                    <td><?= $this->nettoyer($prest['prixService']) ?> € </td>
+                    
+
+
+                    
+
+                      </tr>
+
+
+            <?php endforeach; ?>
+      
+        </table>
+     
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
  <h2 class="text-center">Liste des prestations</h2>
  <br>
   <span id="span_txt" style="display:none;"> <a   alt="Ajouter des prestations par semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>s</a>  : Une fois par semaine
@@ -42,9 +109,9 @@
 </span>
 
 <br>
-    <div class="table-responsive">
+    <div id="dernieresnouvelles" class="table-responsive">
       <br>
-        <table id="example1"  class="table table-bordered table-striped">
+        <table id="example3"  class="table table-bordered table-striped">
             <thead>
 
 
@@ -190,6 +257,19 @@ function toggle_texttroisemaine() {
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
+
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+
+    });
+  });
+   $(function () {
+    $("#example3").DataTable();
+    $('#example4').DataTable({
 
       "paging": true,
       "lengthChange": false,

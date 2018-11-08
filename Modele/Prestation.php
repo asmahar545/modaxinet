@@ -111,5 +111,14 @@ class Prestation extends Modele
       return $this->executerRequete($sql,array($idcli,$chantier));
       
     }
+
+
+    public function getServiceMois($idmois)
+    
+    {
+
+      $sql="SELECT *, month(date_service) as mois FROM service where month(date_service)= ?";
+      return $this->executerRequete($sql,array($idmois));
+    }
 }
 
