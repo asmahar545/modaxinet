@@ -17,7 +17,7 @@
 <div  id='printMe'class="row" >
   <div class="col-lg-6" >
  
-	<table class="table table-bordered table-striped"> 
+	<table class="table table-bordered  table-dark table-striped" > 
 <caption><h4> Bon de prestation  </h4></caption>
      
      
@@ -39,34 +39,34 @@
 
       </th>
      	 </tr>
-        <tr>
-          <th rowspan="5" colspan="1" scope="rowgroup">Données du client</th>
-          <th scope="row">Nom</th>
+        <tr >
+          <th  rowspan="5" colspan="1" scope="rowgroup">Données du client</th>
+          <th  scope="row">Nom</th>
          
           
-          <td colspan="5"><?= $this->nettoyer($client['Nom']) ?></td>
+          <td  colspan="5"><?= $this->nettoyer($client['Nom']) ?></td>
 
           
         </tr>
-        <tr>
+        <tr >
           <th scope="row">Numéro du client:</th>
-          <td colspan="5">MO/<?= $this->nettoyer($client['numero_client']) ?></td>
+          <td  colspan="5">MO/<?= $this->nettoyer($client['numero_client']) ?></td>
           
         </tr>
-        <tr>
-          <th scope="row">Adresse</th>
-          <td colspan="5"><?= $this->nettoyer($client['Adresse']) ?></td>
+        <tr >
+          <th  scope="row">Adresse</th>
+          <td  colspan="5"><?=  $this->nettoyer($prestation['Ville']) ?></td>
           
         </tr>
-        <tr>
+        <tr >
           <th scope="row">Date de la prestation: </th>
           <td colspan="5"><b><?=  $this->nettoyer($prestation['Date']) ?></b></td>
           
         </tr>
 
-        <tr>
-          <th scope="row">Contact:</th>
-           <td colspan="5"><b><?=  $this->nettoyer($client['Contact']) ?></b></td>
+        <tr  >
+          <th   scope="row">Contact:</th>
+           <td  colspan="5"><b><?=  $this->nettoyer($client['Contact']) ?></b></td>
           
         </tr>
         <tr>
@@ -76,7 +76,7 @@
        	
        </tr>
         
-       <th colspan="15"> 
+       <th  colspan="15"> 
         Remarques: <br>
         <br>
         Signature & cachet:
@@ -84,7 +84,7 @@
         
         </th>
         </tr>
-        <th colspan="15"> Merci de communiquer vos remarques éventuelles dans les 48 heures de la présente..
+        <th   colspan="15"> Merci de communiquer vos remarques éventuelles dans les 48 heures de la présente..
         </th>
        </tr>
         
@@ -93,7 +93,7 @@
     </table>
 	</div>
 	 <br>
-   
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-------------------------------------------------------------------------------------------------------------------------------------
 	 <div class="col-lg-6">
     <table   class="table table-bordered table-striped">
      
@@ -131,7 +131,7 @@
         </tr>
         <tr>
           <th scope="row">Adresse</th>
-          <td colspan="5"><?= $this->nettoyer($client['Adresse']) ?></td>
+          <td colspan="5"><?=  $this->nettoyer($prestation['Ville']) ?></td>
           
         </tr>
         <tr>

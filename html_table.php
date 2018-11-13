@@ -284,19 +284,19 @@ function Header()
     $this->Image('logo.png',10,6,80);
     // Police Arial gras 15
     $this->SetFont('Times','B',12);
-     $this->Cell(55,30,'Rue Charles Meert, 9',0,0,'C');
+     $this->Cell(40,30,'Rue Charles Meert, 9',0,0,'C');
      // Saut de ligne
      $this->Ln(5);
-     $this->Cell(42,30,'1030 Bruxelles',0,0,'C');
+     $this->Cell(28,30,'1030 Bruxelles',0,0,'C');
      // Saut de ligne
      $this->Ln(5);
-     $this->Cell(56,30,'TVA BE06507811512 ',0,0,'C');
+     $this->Cell(42,30,'TVA BE06507811512 ',0,0,'C');
      // Saut de ligne
     $this->Ln(5);
-    $this->Cell(53,30,'TEL: +32 483546550',0,0,'C');
+    $this->Cell(40,30,'TEL: +32 483546550',0,0,'C');
      // Saut de ligne
     $this->Ln(5);
-     $this->Cell(80,30,'COMPTE ING BE04363159690231',0,0,'C');
+     $this->Cell(66,30,'COMPTE ING BE04363159690231',0,0,'C');
      $this->Ln(5);
     // Décalage à droite
     $this->Cell(80);
