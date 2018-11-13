@@ -69,7 +69,7 @@ class ControleurPrestation extends Controleur
         $noma= $nom1['Prénom'];
             
         
-    $this->genererVue(array('prestationtoute'=>$prestationtoute,'id'=>$id,'clients'=>$client,'email' => $emaila,'nom'=>$noma,'list'=>$list,'service'=>$service));
+    $this->genererVue(array('id'=>$id,'prestationtoute'=>$prestationtoute,'id'=>$id,'clients'=>$client,'email' => $emaila,'nom'=>$noma,'list'=>$list,'service'=>$service));
 
          }
 

@@ -4,10 +4,8 @@
 <br>
 <br>
 <br>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-
-
-<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap.min.css">
 
@@ -15,10 +13,26 @@
 <?php require 'Vue/_Commun/barreNavigation.php'; ?>
 <div class="row">
     <ul class="breadcrumb">
-    <li><span class="glyphicon glyphicon-th"></span> <a >Prestations</a></li>
-    <li> <a >Service</a></li>
-    <button  type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#exampleModalLong"><span class="glyphicon glyphicon-wrench">
-      
+    <li><span class="glyphicon glyphicon-th"></span> <a>Prestations</a></li>
+    <li> <a >Service</a>
+    <button  type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#exampleModalLong"><span style="font-size:16px" class="glyphicon glyphicon-wrench"></button></li>
+      <li> <a></i>Tableau</a></li>
+      <butto>  <a href="exel.php?id=<?= $this->nettoyer($id)?>"
+        class="btn btn-sm btn-success"> <i class="far fa-file-excel" style="font-size:20px"></i></a> 
+    </span></button>
+
+     <butto>  <a href="exel.php?id=<?= $this->nettoyer($id)?>"
+        class="btn btn-sm btn-info"> <i class="fas fa fa-copy" style="font-size:20px" ></i></a> 
+    </span></button>
+    <butto>  <a href="exel.php?id=<?= $this->nettoyer($id)?>"
+        class="btn btn-sm btn-danger"> <i class="far fa-file-pdf" style="font-size:20px"></i></a> 
+    </span></button>
+    <butto>  <a href="exel.php?id=<?= $this->nettoyer($id)?>"
+        class="btn btn-sm btn-success"> <i class="fas fa-file-csv " style="font-size:20px"></i></a> 
+    </span></button>
+
+      <butto>  <a href="exel.php?id=<?= $this->nettoyer($id)?>"
+        class="btn btn-sm btn-primary"> <i class="fas fa-print" style="font-size:20px" ></i></a> 
     </span></button>
  
 </button>
@@ -78,7 +92,7 @@
      
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
         
       </div>
     </div>
@@ -154,6 +168,7 @@
                          
                     <a  href="prestation/pdf/<?=$this->nettoyer($prest['ID_prestation'])?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-file"></span> </a>
                     <a  href="prestation/ajoutServices" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-wrench"></span> </a>
+
                   
                     <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModal">
                     <span class="glyphicon glyphicon-remove"></span>
@@ -224,40 +239,19 @@
 <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="plugins/fastclick/fastclick.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
 <!-- AdminLTE App -->
 
 <script>
 
 
-function toggle_textsemaine() {
-  var span = document.getElementById("span_txt");
-  if(span.style.display == "none") {
-    span.style.display = "inline";
-  } else {
-    span.style.display = "none";
-  }
-}
-function toggle_textdeuxsemaine() {
-  var span = document.getElementById("span_txt");
-  if(span.style.display == "none") {
-    span.style.display = "inline";
-  } else {
-    span.style.display = "none";
-  }
-}
-function toggle_texttroisemaine() {
-  var span = document.getElementById("span_txt");
-  if(span.style.display == "none") {
-    span.style.display = "inline";
-  } else {
-    span.style.display = "none";
-  }
-}
-
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
+      
 
+      
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -267,33 +261,42 @@ function toggle_texttroisemaine() {
 
     });
   });
-   $(function () {
-    $("#example3").DataTable();
-    $('#example4').DataTable({
 
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
 
-    });
-  });
+$(function () {
+  $('#example3').DataTable( {
+    buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Save as Excel',
+            customize: function( xlsx ) {
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                $('row:first c', sheet).attr( 's', '42' );
+            }
+        }
+    ]
+} );
+} );
+
+  
+
+   
+
+
 </script>
-
-<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-    <script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript"  src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript"  src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript"  src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    
     <script type="text/javascript" class="init">
     
+
     

@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="Librairies/bootstrap/css/bootstrap.min.css">
         
   <!-- Theme style -->
-
+        
         <link rel="shortcut icon" weight="5px" height="10px" href="Contenu/Images/logo.png">
 
         <!-- Titre -->

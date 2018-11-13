@@ -1,4 +1,4 @@
-MusicStore-FrameworkMVC
+Modaxinet
 =======================
 
-Application de e-commerce construite avec le framework MVC
+Application des préstations des travailleurs 
