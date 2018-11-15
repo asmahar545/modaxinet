@@ -5,13 +5,13 @@ require('html_table.php');
 require('tfpdf.php');
 
 try
-    {
+{
     $bdd = new PDO('mysql:host=localhost;dbname=modaxinet;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
+}
+catch(Exception $e)
+{
         die('Erreur : '.$e->getMessage());
-    }
+}
 
 
 $pdf = new PDF();
@@ -27,24 +27,26 @@ $chantierget=$facturation['chantierPrestation'];
 $requete=$bdd->query('SELECT*, month(date_service) as mois FROM service where num_cli='. $_GET['idclient'].'');
 $service= $requete->fetch();
 
-$pdf->Cell(50,20,'Facturation:  '.$facturation['yearPrestation'].'-225',0,0,'C');
+
+$pdf->Ln(5);
+$pdf->Cell(35,20,'Facture:  '.$facturation['yearPrestation'].'-225',0,0,'C');
 // Décalage à droite
 $pdf->Cell(80);
-$pdf->Cell(42,20,''. utf8_decode($facturation['nomClient']).'',0,0,'C');
+
+
+
+$pdf->Ln(5);
+
+$pdf->Cell(33,20,'Date: 14/'. $_GET['idmois'].'/ '.$facturation['yearPrestation'].' ',0,0,'C');
+// Décalage à droite
+$pdf->Cell(80);
 
 
 $pdf->Ln(5);
-
-$pdf->Cell(43,20,'Date: 13/'. $_GET['idmois'].'/ '.$facturation['yearPrestation'].' ',0,0,'C');
+$pdf->Cell(29,20,'Client: MO/0'.$facturation['numcli'].'',0,0,'C');
 // Décalage à droite
     $pdf->Cell(80);
-    $pdf->Cell(50,20,''. utf8_decode($facturation['adresseClient']).'',0,0,'C');
-
-$pdf->Ln(5);
-$pdf->Cell(41,20,' Client: MO/'.$facturation['numcli'].'',0,0,'C');
-// Décalage à droite
-    $pdf->Cell(80);
-    $pdf->Cell(56,20,''.$facturation['codepostalClient'].' '.$facturation['villeClient'].'',0,0,'C');
+   ;
 
 $pdf->Ln(5);
 
@@ -282,6 +284,11 @@ else
 $prixtotal = $service['prixService']+$facturation['prixFacture'];
 $tvacalcul= ($prixtotal*21)/100;   
 $prixtotaltva=round($prixtotal+$tvacalcul,2);
+
+
+//arrondir la tva 
+
+$tvaarondir=round($tvacalcul,2);
 $prixfinal='<table border="1">
 
 <tr>
@@ -298,7 +305,7 @@ $prixhtva='<table border="1">
 $tva='<table border="1">
 
 <tr>
-<td width="134"  height="50">TVA: </td><td width="120" height="50" >'.$tvacalcul.' </td>
+<td width="134"  height="50">TVA: </td><td width="120" height="50" >'.$tvaarondir.' </td>
 </tr>
 </table>';
 
@@ -339,6 +346,10 @@ else{
 
 $tvacalcul= ($facturation['prixFacture']*21)/100;   
 $prixtotaltva=round($facturation['prixFacture']+$tvacalcul,2);
+
+//arrondir la tva 
+
+$tvaarondir=round($tvacalcul,2);
 $prixfinal='<table border="1">
 
 <tr>
@@ -356,7 +367,7 @@ $prixhtva='<table border="1">
 $tva='<table border="1">
 
 <tr>
-<td width="134"  height="50">TVA: </td><td width="120" height="50" > '.$tvacalcul.' euros </td>
+<td width="134"  height="50">TVA: </td><td width="120" height="50" > '.$tvaarondir.' euros </td>
 </tr>
 </table>';
 
@@ -395,7 +406,7 @@ $htmltab='<table border="1">
 
 $chantier='<table border="1">
 <tr>
-<td width="150"  height="50">Chantier : </td><td width="250" height="50" >'.utf8_decode($facturation['chantierPrestation']).'  </td>
+<td width="150"  height="50">Chantier : </td><td width="350" height="50" >'.utf8_decode($facturation['chantierPrestation']).'  </td>
 </tr>
 <tr>
 

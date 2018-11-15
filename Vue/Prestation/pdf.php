@@ -17,7 +17,7 @@
 <div  id='printMe'class="row" >
   <div class="col-lg-6" >
  
-	<table class="table table-bordered  table-dark table-striped" > 
+	<table class="table table-bordered   table-striped" > 
 <caption><h4> Bon de prestation  </h4></caption>
      
      
@@ -36,35 +36,36 @@
 
     </div>
     </div>
-
+     <?php $date= date("d-m-Y", strtotime($this->nettoyer($prestation['Date']))); ?> 
       </th>
      	 </tr>
         <tr >
-          <th  rowspan="5" colspan="1" scope="rowgroup">Données du client</th>
+          <th  rowspan="5" colspan="1" sope="rowgroup">Données du client </th>
           <th  scope="row">Nom</th>
          
           
-          <td  colspan="5"><?= $this->nettoyer($client['Nom']) ?></td>
+          <td  colspan="5"><?= $this->nettoyer($client['Nom']) ?>/ <b><?= $this->nettoyer($prestation['chantier']) ?></b></td>
 
           
         </tr>
         <tr >
           <th scope="row">Numéro du client:</th>
-          <td  colspan="5">MO/<?= $this->nettoyer($client['numero_client']) ?></td>
+          <td  colspan="5">MO/0<?= $this->nettoyer($client['numero_client']) ?></td>
           
         </tr>
         <tr >
-          <th  scope="row">Adresse</th>
+          <th  scope="row">Adresse    </th>
           <td  colspan="5"><?=  $this->nettoyer($prestation['Ville']) ?></td>
           
         </tr>
-        <tr >
+        <tr>
+
           <th scope="row">Date de la prestation: </th>
-          <td colspan="5"><b><?=  $this->nettoyer($prestation['Date']) ?></b></td>
+          <td colspan="5"><b><?php echo $date ?></b></td>
           
         </tr>
 
-        <tr  >
+        <tr>
           <th   scope="row">Contact:</th>
            <td  colspan="5"><b><?=  $this->nettoyer($client['Contact']) ?></b></td>
           
@@ -121,12 +122,12 @@
           <th rowspan="5" colspan="1" scope="rowgroup">Données du client</th>
           <th scope="row">Nom</th>
          
-          <td colspan="5"><?= $this->nettoyer($client['Nom']) ?></td>
+          <td colspan="5"><?= $this->nettoyer($client['Nom']) ?>/<b> <?= $this->nettoyer($prestation['chantier']) ?></b></td>
           
         </tr>
         <tr>
           <th scope="row">Numéro du client:</th>
-          <td colspan="5">MO/<?= $this->nettoyer($client['numero_client']) ?></td>
+           <td  colspan="5">MO/0<?= $this->nettoyer($client['numero_client']) ?></td>
           
         </tr>
         <tr>
@@ -136,7 +137,8 @@
         </tr>
         <tr>
           <th scope="row">Date de la prestation:</th>
-          <td colspan="5"><b><?=  $this->nettoyer($prestation['Date']) ?></b></td>
+           <td colspan="5"><b><?php echo $date ?></b></td>
+          
           
         </tr>
 
@@ -174,7 +176,8 @@
    
    <style>
 
-   .titre {
+   .table-bordered{
+    border-style: solid;
    
   
     

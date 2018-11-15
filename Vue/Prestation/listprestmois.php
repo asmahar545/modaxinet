@@ -65,7 +65,7 @@
             </thead>
        <?php $i=0 ?>
             <?php foreach ($service as $prest): ?>
-
+             
                 
                 <?php $i++ ?>
              
@@ -75,6 +75,8 @@
                     <td> <?php echo $i ?></td>
                     <td><?= $this->nettoyer($prest['chantier']) ?></td>
                     <td><?= $this->nettoyer($prest['description']) ?></td>
+
+
                     <td><?= $this->nettoyer($prest['date_service']) ?></td>
                     <td><?= $this->nettoyer($prest['prixService']) ?> € </td>
                     

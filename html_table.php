@@ -280,34 +280,89 @@ function PutLink($URL, $txt)
 }
 function Header()
 {
+
+	try
+    {
+    $bdd = new PDO('mysql:host=localhost;dbname=modaxinet;charset=utf8', 'root', '');
+    }
+    catch(Exception $e)
+    {
+        die('Erreur : '.$e->getMessage());
+    }
+$req = $bdd->query('SELECT * FROM factvue where idPrest='. $_GET['idprestation'].' and idClient ='. $_GET['idclient'].'');
+$facturation= $req->fetch();
     // Logo
     $this->Image('logo.png',10,6,80);
     // Police Arial gras 15
     $this->SetFont('Times','B',12);
-     $this->Cell(40,30,'Rue Charles Meert, 9',0,0,'C');
+    $this->Cell(40,30,'Rue Charles Meert, 9',0,0,'C');
+     // Décalage à droite
+
+     $this->Cell(80);
+
+     
      // Saut de ligne
      $this->Ln(5);
      $this->Cell(28,30,'1030 Bruxelles',0,0,'C');
      // Saut de ligne
      $this->Ln(5);
-     $this->Cell(42,30,'TVA BE06507811512 ',0,0,'C');
+     $this->Cell(42,30,' TVA BE06507811512 ',0,0,'C');
      // Saut de ligne
-    $this->Ln(5);
-    $this->Cell(40,30,'TEL: +32 483546550',0,0,'C');
-     // Saut de ligne
-    $this->Ln(5);
-     $this->Cell(66,30,'COMPTE ING BE04363159690231',0,0,'C');
      $this->Ln(5);
-    // Décalage à droite
-    $this->Cell(80);
-     $this->SetFont('Times','U',20);
-    $this->Cell(30,40,'Facturation',0,0,'C');
+    $this->Cell(40,30,'TEL: +32 483546550',0,0,'C');
 
-    // Saut de ligne
-    $this->Ln(20);
+     // Saut de ligne
+    $this->Ln(5);
+    $this->Cell(66,30,'COMPTE ING BE04363159690231',0,0,'C');
+ 
+ 
+   
+   
+    $this->Ln(5);
+    $this->Cell(100);
+     $client='<table>
+   <tr>
+   <td width="150"  height="20">'. utf8_decode($facturation['nomClient']).',</td><td width="100" height="20" ></td>
+   </tr>
+
+   </table>';
+  $adresseClient='<table>
+<tr>
+<td width="150"  height="20">     '. utf8_decode($facturation['adresseClient']).' </td><td width="100" height="20" > </td>
+</tr>
+
+</table>';
+
+$codeClient='<table>
+<tr>
+<td width="150"  height="20">      '.$facturation['codepostalClient'].' '.$facturation['villeClient'].' </td><td width="100" height="20" > </td>
+</tr>
+
+</table>';
+
+
+   $this->WriteHTML($client);
+
+    $this->Ln(2);
+    $this->Cell(100);
+       $this->WriteHTML($adresseClient);
+       $this->Ln(3);
+    $this->Cell(100);
+       $this->WriteHTML($codeClient);
+     $this->Ln(5);
+      
+  
+    
+    $this->Cell(246,20,'',0,0,'C');
+    
+   
+     $this->SetFont('Times','U',20);
+
+
+    
 }
 
-// Pied de page
+
 function Footer()
 {
     // Positionnement à 1,5 cm du bas

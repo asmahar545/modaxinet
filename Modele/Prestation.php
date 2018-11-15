@@ -38,7 +38,7 @@ class Prestation extends Modele
     }
       public function getPrestationUnique($id)
     {
-        $sql = "SELECT `ID_prestation`, `Description`, `Ville`, `Nbr_heure`, `Prix`, `Date`, `ID_client`, `ID_period` FROM `prestation` WHERE ID_prestation= ?";
+        $sql = "SELECT `ID_prestation`, `Description`, `Ville`,`chantier`, `Nbr_heure`, `Prix`, `Date`, `ID_client`, `ID_period` FROM `prestation` WHERE ID_prestation= ?";
 
         $req = $this->executerRequete($sql, array($id));
 
