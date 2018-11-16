@@ -1,5 +1,4 @@
-
-  <link rel="stylesheet" href="Contenu/style.css">
+<link rel="stylesheet" href="Contenu/style.css">
   <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
   <!-- Morris chart -->
   <link rel="stylesheet" href="plugins/morris/morris.css">
@@ -36,7 +35,7 @@
 
     </div>
     </div>
-     <?php $date= date("d-m-Y", strtotime($this->nettoyer($prestation['Date']))); ?> 
+     <?php $date= date("m", strtotime($this->nettoyer($prestation['Date']))); ?> 
       </th>
      	 </tr>
         <tr >
@@ -60,8 +59,35 @@
         </tr>
         <tr>
 
-          <th scope="row">Date de la prestation: </th>
-          <td colspan="5"><b><?php echo $date ?></b></td>
+          <th scope="row">Mois de la prestation: </th>
+          <td colspan="5"><b>
+          <?php  switch ($date) {
+          case 1: echo "Janvier";
+          break; 
+          case 2: echo "Février";
+          break; 
+          case 3: echo "Mars";
+          break; 
+          case 4: echo "Avril";
+          break; 
+          case 5: echo "Mai";
+          break; 
+          case 6: echo "Juin";
+          break; 
+          case 7: echo "Juillet";
+          break; 
+          case 8: echo "Août";
+          break; 
+          case 9: echo "Septembre";
+          break; 
+          case 10: echo "Octobre";
+          break;
+          case 12: echo "Décembre";
+          break; 
+          case 11: echo "Novembre";
+          break; }
+
+            ?></b></td>
           
         </tr>
 
@@ -136,8 +162,37 @@
           
         </tr>
         <tr>
-          <th scope="row">Date de la prestation:</th>
-           <td colspan="5"><b><?php echo $date ?></b></td>
+          <th scope="row">Mois de la prestation:</th>
+           <td colspan="5"><b>
+             
+              <?php  switch ($date) {
+          case 1: echo "Janvier";
+          break; 
+          case 2: echo "Février";
+          break; 
+          case 3: echo "Mars";
+          break; 
+          case 4: echo "Avril";
+          break; 
+          case 5: echo "Mai";
+          break; 
+          case 6: echo "Juin";
+          break; 
+          case 7: echo "Juillet";
+          break; 
+          case 8: echo "Août";
+          break; 
+          case 9: echo "Septembre";
+          break; 
+          case 10: echo "Octobre";
+          break;
+          case 12: echo "Décembre";
+          break; 
+          case 11: echo "Novembre";
+          break; }
+
+            ?>
+           </b></td>
           
           
         </tr>

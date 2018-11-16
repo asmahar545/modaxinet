@@ -375,6 +375,34 @@ public function exeAjoutjour()
         
     
     }
+     public function pdfmois(){
+
+        if ($this->requete->existeParametre("id") )
+        {
+         
+        $id = $this->requete->getParametre("id");
+        $prestation= $this->prestation->getPrestationUnique($id);
+        $email1= $this->admin->getAdminEmail();
+        $nom1=$this->admin->getAdminNom();
+         $clientId=$prestation['ID_client'];
+        $emaila= $email1['Email'];
+        $noma= $nom1['Prénom'];
+
+        $client= $this->client->getClientParId($clientId);
+        $this->genererVue(array('client'=>$client, 'prestation'=>$prestation,'id'=>$id,'email' => $emaila,'nom'=>$noma));
+
+        }
+        else
+
+           throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
+    
+
+
+             
+
+        
+    
+    }
     public function exeAjout()
     {
         if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
@@ -427,8 +455,50 @@ public function exeAjoutjour()
 
 
              }
+ 
+ public function exeAjoutTrimestre()
+    {
+        if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
+            $this->requete->existeParametre("nbr_heure") && $this->requete->existeParametre("prix") 
+            && $this->requete->existeParametre("idclient") &&
+            $this->requete->existeParametre("mois") && $this->requete->existeParametre("annee"))  {
+            // innitier les variables
+
+            $description = $this->requete->getParametre("description");
+            $ville = $this->requete->getParametre("ville");
+            $nbr_heure = $this->requete->getParametre("nbr_heure");
+            $prix = $this->requete->getParametre("prix");
+            $idclient = $this->requete->getParametre("idclient");
+            $mois = $this->requete->getParametre("mois");
+            $annee = $this->requete->getParametre("annee");
+          
+             // ajouter la date du mois 
+         
+            $datex ='2018-12-01';
+         
+
+            
+             $email1= $this->admin->getAdminEmail();
+             $nom1=$this->admin->getAdminNom();
+
+             $emaila= $email1['Email'];
+             $noma= $nom1['Prénom'];
+            
+            $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$date,$idclient,1);
+
+          
+             $this->genererVue(array('email' => $emaila,'nom'=>$noma));
+            }
+
+        else
+
+           throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
+    
 
 
+             }
+
+ /* ajout trimestrielle par période
  public function exeAjoutTrimestre()
     {
         if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
@@ -480,7 +550,7 @@ public function exeAjoutjour()
     
 
 
-             }
+             }*/
 
 
 public function exesupprprestation(){

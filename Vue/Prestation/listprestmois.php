@@ -169,6 +169,7 @@
                     <a href="prestation/trimestre" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-plus"></span>t</a> 
                          
                     <a  href="prestation/pdf/<?=$this->nettoyer($prest['ID_prestation'])?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-file"></span> </a>
+                    <a  href="prestation/pdfmois/<?=$this->nettoyer($prest['ID_prestation'])?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-file"></span>m </a>
                     <a  href="prestation/ajoutServices" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-wrench"></span> </a>
 
                   
