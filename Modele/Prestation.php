@@ -16,8 +16,23 @@ class Prestation extends Modele
      * @param type $idGenre
      * @return type
      */
- 
+
+      public function getchantiers(){
+
+        $sql="SELECT * FROM `chantier` ";
+        return $this->executerRequete($sql);
+      }
+
+        
+      public function updatePrestation($id,$des,$ville,$chantier,$prix)
+      {
+      //modification prestation
+       $sql="UPDATE `prestation`  SET `Description`=?,`Ville`=?,`chantier`=?,`Prix`= ?,`Date`=?,`ID_client`=? 
+       WHERE `ID_prestation`= ?";
+       return $this->executerRequete($sql, array($id));
+      }
        public function getPrestation()
+      
     {
         $sql = "SELECT `ID_prestation`, `Description`, `Ville`, `Nbr_heure`, `Prix`, `Date`, `ID_client`, `ID_period` FROM `prestation` WHERE 1";
         return $this->executerRequete($sql);
@@ -38,7 +53,7 @@ class Prestation extends Modele
     }
       public function getPrestationUnique($id)
     {
-        $sql = "SELECT `ID_prestation`, `Description`, `Ville`,`chantier`, `Nbr_heure`, `Prix`, `Date`, `ID_client`, `ID_period` FROM `prestation` WHERE ID_prestation= ?";
+        $sql = "SELECT Nom,`ID_prestation`, `Description`, prestation.Ville,`chantier`, `Nbr_heure`, `Prix`, `Date`, prestation.ID_client, `ID_period` FROM `prestation`,client WHERE prestation.ID_client = client.ID_client and ID_prestation= ?";
 
         $req = $this->executerRequete($sql, array($id));
 

@@ -166,11 +166,13 @@
                     <a href="prestation"  alt="Ajouter des prestations par semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>s </a>
                     <a href="prestation/ajoutjour" alt="Ajouter des prestations 2 fois semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>2j </a> 
                     <a href="prestation/ajoutjours" alt="Ajouter des prestations 3 fois semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>3j </a>   
-                    <a href="prestation/trimestre" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-plus"></span>t</a> 
+                    <a href="prestation/trimestre" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-plus"></span>m</a> 
                          
                     <a  href="prestation/pdf/<?=$this->nettoyer($prest['ID_prestation'])?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-file"></span> </a>
                     <a  href="prestation/pdfmois/<?=$this->nettoyer($prest['ID_prestation'])?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-file"></span>m </a>
+                     <a  href="prestation/updateService/<?=$this->nettoyer($prest['ID_prestation'])?>" class="btn btn-xs btn-warning"><span class="fa fa-edit"></span> </a>
                     <a  href="prestation/ajoutServices" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-wrench"></span> </a>
+
 
                   
                     <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModal">

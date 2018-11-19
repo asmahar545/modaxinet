@@ -184,7 +184,38 @@ class ControleurPrestation extends Controleur
         
     $this->genererVue(array('clients'=>$client,'email' => $emaila,'nom'=>$noma));
     }
+    public function updateService(){
+  
+         if ($this->requete->existeParametre("id")){
+            
 
+             $id= $this->requete->getParametre("id");
+
+             $client=$this->client->getClient();
+             $email1= $this->admin->getAdminEmail();
+             $nom1=$this->admin->getAdminNom();
+       
+
+             $prestation=$this->prestation->getPrestationUnique($id);
+             $chantier=$this->prestation->getchantiers();
+     
+              $emaila= $email1['Email'];
+              $noma= $nom1['Prénom'];
+            
+        
+    $this->genererVue(array('chantier'=>$chantier,'prestation'=>$prestation,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
+         }
+      else
+
+
+throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
+    }
+
+    public function exeUpdatePrestation()
+    {
+
+        
+    }
 
 public function exeAjoutjour()
     {
@@ -472,9 +503,13 @@ public function exeAjoutjour()
             $mois = $this->requete->getParametre("mois");
             $annee = $this->requete->getParametre("annee");
           
-             // ajouter la date du mois 
-         
-            $datex ='2018-12-01';
+
+            // Création de la date
+            $datetime = new DateTime(''.$annee.'-'.$mois.'-01');
+            $datex= $datetime->format('Y-m-d');
+            // ajouter la date du mois 
+           
+           
          
 
             
@@ -484,7 +519,7 @@ public function exeAjoutjour()
              $emaila= $email1['Email'];
              $noma= $nom1['Prénom'];
             
-            $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$date,$idclient,1);
+            $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$datex,$idclient,1);
 
           
              $this->genererVue(array('email' => $emaila,'nom'=>$noma));
