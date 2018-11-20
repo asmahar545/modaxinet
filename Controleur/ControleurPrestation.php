@@ -12,6 +12,7 @@ require_once 'Modele/Clients.php';
  *
  * @author Harmach Asmae
  */
+
 class ControleurPrestation extends Controleur
 {
     
@@ -52,6 +53,7 @@ class ControleurPrestation extends Controleur
            throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
 
     }
+
     public function listprestmois(){
 
         if ($this->requete->existeParametre("id")){
@@ -72,13 +74,13 @@ class ControleurPrestation extends Controleur
     $this->genererVue(array('id'=>$id,'prestationtoute'=>$prestationtoute,'id'=>$id,'clients'=>$client,'email' => $emaila,'nom'=>$noma,'list'=>$list,'service'=>$service));
 
          }
-
             
             else
 
            throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
 
     }
+
 
     public function loger()
     {
@@ -98,14 +100,15 @@ class ControleurPrestation extends Controleur
     {
 
         $client=$this->client->getClient();
-
+        $chantier=$this->prestation->getchantiers();
+        $chantiers=$this->prestation->getchantiers();
         $email1= $this->admin->getAdminEmail();
         $nom1=$this->admin->getAdminNom();
 
         $emaila= $email1['Email'];
         $noma= $nom1['Prénom'];
             
-        $this->genererVue(array('clients'=>$client,'email' => $emaila,'nom'=>$noma));
+        $this->genererVue(array('chantier'=>$chantier,'chantiers'=>$chantiers,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
     }
      public function clients()
     {
@@ -145,8 +148,8 @@ class ControleurPrestation extends Controleur
       $email1= $this->admin->getAdminEmail();
       $nom1=$this->admin->getAdminNom();
 
-     $emaila= $email1['Email'];
-     $noma= $nom1['Prénom'];
+      $emaila= $email1['Email'];
+      $noma= $nom1['Prénom'];
             
      $this->genererVue(array('email' => $emaila,'nom'=>$noma));
     }
@@ -184,6 +187,62 @@ class ControleurPrestation extends Controleur
         
     $this->genererVue(array('clients'=>$client,'email' => $emaila,'nom'=>$noma));
     }
+
+
+public function jour(){
+
+        $clients=$this->client->getClient();
+        $chantier=$this->prestation->getchantiers();
+        $chantiers=$this->prestation->getchantiers();
+        $email1= $this->admin->getAdminEmail();
+        $nom1=$this->admin->getAdminNom();
+
+        $emaila= $email1['Email'];
+        $noma= $nom1['Prénom'];
+            
+        
+    $this->genererVue(array('chantier'=>$chantier,'chantiers'=>$chantiers,'clients'=>$clients,'email' => $emaila,'nom'=>$noma));
+
+
+
+}
+public function exejour(){
+
+  if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
+            $this->requete->existeParametre("idclient") && $this->requete->existeParametre("prix") 
+            && $this->requete->existeParametre("chantier") && $this->requete->existeParametre("date") 
+         )  {
+
+            $description = $this->requete->getParametre("description");
+            $idclient = $this->requete->getParametre("idclient");
+            $ville = $this->requete->getParametre("ville");
+            $chantier= $this->requete->getParametre("chantier");
+            $prix = $this->requete->getParametre("prix");
+            $date = $this->requete->getParametre("date");
+       
+           
+            $this->prestation->ajouterPrestation($description,$ville,$chantier,$prix,$date,$idclient);
+            
+
+
+            
+             $email1= $this->admin->getAdminEmail();
+             $nom1=$this->admin->getAdminNom();
+
+             $emaila= $email1['Email'];
+             $noma= $nom1['Prénom'];
+            
+             $this->genererVue(array('email' => $emaila,'nom'=>$noma));
+            }
+
+        else
+
+           throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
+
+
+}
+
+
     public function updateService(){
   
          if ($this->requete->existeParametre("id")){
@@ -198,24 +257,60 @@ class ControleurPrestation extends Controleur
 
              $prestation=$this->prestation->getPrestationUnique($id);
              $chantier=$this->prestation->getchantiers();
+             $chantiers=$this->prestation->getchantiers();
      
-              $emaila= $email1['Email'];
-              $noma= $nom1['Prénom'];
+     
+            $emaila= $email1['Email'];
+            $noma= $nom1['Prénom'];
             
         
-    $this->genererVue(array('chantier'=>$chantier,'prestation'=>$prestation,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
+            $this->genererVue(array('id'=>$id,'chantier'=>$chantier,'chantiers'=>$chantiers,'prestation'=>$prestation,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
          }
+
       else
 
 
 throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
     }
 
-    public function exeUpdatePrestation()
+public function exeUpdatePrestation()
+
     {
+
+      if (  $this->requete->getParametre("id") &&
+        $this->requete->existeParametre("date") && 
+        $this->requete->existeParametre("prix") &&
+        $this->requete->existeParametre("ville") &&  
+        $this->requete->existeParametre("chantier") &&
+        $this->requete->existeParametre("idclient") &&  
+        $this->requete->existeParametre("description") ) 
+      {
+
+        $id= $this->requete->getParametre("id");
+        $date= $this->requete->getParametre("date");
+        $chantier= $this->requete->getParametre("chantier");
+        $prix= $this->requete->getParametre("prix");
+        $ville= $this->requete->getParametre("ville");
+        $idclient= $this->requete->getParametre("idclient");
+        $description= $this->requete->getParametre("description");
+        //modification
+      $this->prestation->updatePrestation($description,$ville,$chantier,$prix,$date,$idclient,$id);
+       $email1= $this->admin->getAdminEmail();
+       $nom1=$this->admin->getAdminNom();
+
+        $emaila= $email1['Email'];
+        $noma= $nom1['Prénom'];
+            
+        $this->genererVue(array('email' => $emaila,'nom'=>$noma));
+
 
         
     }
+  else
+
+           throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
+
+}
 
 public function exeAjoutjour()
     {
@@ -225,6 +320,10 @@ public function exeAjoutjour()
             && $this->requete->existeParametre("idclient") && $this->requete->existeParametre("date1") 
             && $this->requete->existeParametre("date2")&& $this->requete->existeParametre("jour")
             && $this->requete->existeParametre("jour2"))  {
+            
+
+
+
 
             $description = $this->requete->getParametre("description");
             $ville = $this->requete->getParametre("ville");
@@ -434,19 +533,49 @@ public function exeAjoutjour()
         
     
     }
+
+    public function pdfservices(){
+
+        if ($this->requete->existeParametre("id") )
+        {
+         
+        $id = $this->requete->getParametre("id");
+        $service= $this->prestation->getServices($id);
+        $email1= $this->admin->getAdminEmail();
+        $nom1=$this->admin->getAdminNom();
+ 
+        $emaila= $email1['Email'];
+        $noma= $nom1['Prénom'];
+
+        $this->genererVue(array( 'service'=>$service,'id'=>$id,'email' => $emaila,'nom'=>$noma));
+
+        }
+        else
+
+           throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
+    
+
+
+             
+
+        
+    
+    }
     public function exeAjout()
     {
-        if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
-            $this->requete->existeParametre("nbr_heure") && $this->requete->existeParametre("prix") 
-            && $this->requete->existeParametre("idclient") &&
-            $this->requete->existeParametre("date1") && $this->requete->existeParametre("date2"))  {
+        if ($this->requete->existeParametre("description") && 
+            $this->requete->existeParametre("idclient") &&
+            $this->requete->existeParametre("ville") &&
+            $this->requete->existeParametre("chantier") 
+            && $this->requete->existeParametre("prix") 
+            && $this->requete->existeParametre("date1") 
+            && $this->requete->existeParametre("date2"))  {
 
             $description = $this->requete->getParametre("description");
-            $ville = $this->requete->getParametre("ville");
-            $nbr_heure = $this->requete->getParametre("nbr_heure");
-            $prix = $this->requete->getParametre("prix");
-         
             $idclient = $this->requete->getParametre("idclient");
+            $ville = $this->requete->getParametre("ville");
+            $chantier = $this->requete->getParametre("chantier");
+            $prix = $this->requete->getParametre("prix");
             $date1 = $this->requete->getParametre("date1");
             $date2 = $this->requete->getParametre("date2");
           
@@ -468,7 +597,9 @@ public function exeAjoutjour()
             foreach($daterange as $date){
             $datex=$date->format("Ymd");
             //ajouter une prestation
-            $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$datex,$idclient,$idp);}
+           // $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$datex,$idclient,$idp);
+            $this->prestation->ajouterPrestation($description,$ville,$chantier,$prix,$datex,$idclient);
+            }
 
              $email1= $this->admin->getAdminEmail();
              $nom1=$this->admin->getAdminNom();

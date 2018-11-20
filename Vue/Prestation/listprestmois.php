@@ -60,7 +60,7 @@
                     <th>Description</th>
                     <th>Date</th>
                     <th>Prix</th>
-                   
+                    <th>#</th>
                 </tr>
             </thead>
        <?php $i=0 ?>
@@ -79,6 +79,7 @@
 
                     <td><?= $this->nettoyer($prest['date_service']) ?></td>
                     <td><?= $this->nettoyer($prest['prixService']) ?> € </td>
+                    <td><a  href="prestation/pdfservices/<?=$this->nettoyer($prest['id_service'])?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-file"></span> </a></td>
                     
 
 
@@ -162,7 +163,7 @@
 
 
                     <td>
-
+                    <a href="prestation/jour"  alt="Ajouter des prestations par semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>j </a>
                     <a href="prestation"  alt="Ajouter des prestations par semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>s </a>
                     <a href="prestation/ajoutjour" alt="Ajouter des prestations 2 fois semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>2j </a> 
                     <a href="prestation/ajoutjours" alt="Ajouter des prestations 3 fois semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>3j </a>   

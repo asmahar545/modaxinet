@@ -33,32 +33,17 @@
             <form class="form-signin form-horizontal" role="form" action="prestation/exeAjout" method="post">
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                        <div>Description</div>
                         <textarea name="description" type="text" class="form-control" placeholder="Entrez la description de la prestation" rows=5 cols=30 required autofocus></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="ville" type="text-center" class="form-control" placeholder="Entrez un chantier" required>
-                    </div>
-                </div>
 
                 <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="nbr_heure" type="number" class="form-control" placeholder="Entrez un nombre d'heure" required>
-                    </div>
-                </div>
-
-                
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="prix" type="text" class="form-control" placeholder="Entrez un prix" required>
-                    </div>
-                </div>
-
-              
-                  <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    
+               <div>Client</div>
                 <select name="idclient" type="text" class="form-control" placeholder="" required>
+                <option value=""> Choix du client</option>
                                     <?php
                                     foreach ($clients as $cli):
                                         echo '<option value="' . $this->nettoyer($cli['ID_client']) . '">' 
@@ -69,6 +54,48 @@
                 </select> 
                 </div>
                 </div>
+
+                <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div>Chantier</div>
+                <select name="chantier" type="text" class="form-control" placeholder="" required>
+                <option value=""> Choix du chantier</option>
+                                    <?php
+                                    foreach ($chantier as $cli):
+                                        echo '<option value="' . $this->nettoyer($cli['Nom']) . '">' 
+                                        .  $this->nettoyer($cli['Nom'])  . '</option>';
+                                        ?>
+                                    <?php endforeach; ?>
+
+                </select> 
+                </div>
+                </div>
+              
+                <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div>Adresse </div>
+                <select name="ville" type="text" class="form-control" placeholder="" required>
+                <option value=""> Choix de l'adresse</option>
+               
+                                    <?php
+                                    foreach ($chantiers as $cli):
+                                        echo '<option value="' . $this->nettoyer($cli['Adresse']) . '">' 
+                                        .  $this->nettoyer($cli['Adresse'])  . '</option>';
+                                        ?>
+                                    <?php endforeach; ?>
+
+                </select> 
+                </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                        <div>Prix </div>
+                        <input name="prix" type="text" class="form-control" placeholder="Entrez un prix ou 0 euro " required> 
+                    </div>
+                </div>
+
+              
                
                  <div class="form-group">
 

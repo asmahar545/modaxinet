@@ -24,12 +24,12 @@ class Prestation extends Modele
       }
 
         
-      public function updatePrestation($id,$des,$ville,$chantier,$prix)
+      public function updatePrestation($des,$ville,$chantier,$prix,$date,$ID_client,$id)
       {
       //modification prestation
        $sql="UPDATE `prestation`  SET `Description`=?,`Ville`=?,`chantier`=?,`Prix`= ?,`Date`=?,`ID_client`=? 
        WHERE `ID_prestation`= ?";
-       return $this->executerRequete($sql, array($id));
+       return $this->executerRequete($sql, array($des,$ville,$chantier,$prix,$date,$ID_client,$id));
       }
        public function getPrestation()
       
@@ -65,10 +65,13 @@ class Prestation extends Modele
         }
          
     }
-    public function ajouterPrestation($description,$ville,$nbr_heure,$prix,$date,$id_client,$id_period)
+    public function ajouterPrestation($description,$ville,$chantier,$prix,$date,$id_client)
     {
-        $sql = "INSERT INTO `prestation`(`Description`, `Ville`, `Nbr_heure`, `Prix`, `Date`, `ID_client`, `ID_period`) VALUES (?,?,?,?,?,?,?)";
-        $this->executerRequete($sql, array($description,$ville,$nbr_heure,$prix,$date,$id_client,$id_period));
+
+      $sql ="INSERT INTO `prestation`( `Description`, `Ville`, `chantier`,`Prix`, `Date`,`ID_client`)
+       VALUES (?,?,?,?,?,?)";
+    
+      $this->executerRequete($sql, array($description,$ville,$chantier,$prix,$date,$id_client));
     }
    
     
@@ -124,6 +127,12 @@ class Prestation extends Modele
 
       $sql="SELECT description, prixService, month(date_service) FROM `service` where num_cli=? and chantier =?";
       return $this->executerRequete($sql,array($idcli,$chantier));
+      
+    }
+    public function getServices($idS){
+
+      $sql="SELECT * FROM `service` where id_service= ?";
+      return $this->executerRequete($sql,array($idS));
       
     }
 

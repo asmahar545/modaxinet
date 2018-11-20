@@ -11,7 +11,7 @@
 
 <div class="row">
     
-<h2 class="text-center">Modification de la prestation</h2>
+<h2 class="text-center">Ajouter un jour de prestation </h2>
 <div class="well">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -29,21 +29,19 @@
           
     <div class="tab-content">
         <div class="tab-pane fade in active" id="connexion">
-            <form class="form-signin form-horizontal" role="form" action="prestation/exeUpdatePrestation/<?= $prestation['ID_prestation'] ?>" method="post">
+            <form class="form-signin form-horizontal" role="form" action="prestation/exejour" method="post">
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="description"  type="text" rows=5 class="form-control" placeholder="Entrez la description de la prestation"  required value= "<?= $prestation['Description'] ?>"></input>
+                        <div>Description</div>
+                        <textarea name="description" type="text" class="form-control" placeholder="Entrez la description de la prestation" rows=5 cols=30 required autofocus></textarea>
                     </div>
                 </div>
-            
-           
-
-           
-                
                 <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    
+               <div>Client</div>
                 <select name="idclient" type="text" class="form-control" placeholder="" required>
-                <option value="<?= $prestation['ID_client'] ?>">  <?php echo  $prestation['Nom'] ?> </option>
+                <option value=""> Choix du client</option>
                                     <?php
                                     foreach ($clients as $cli):
                                         echo '<option value="' . $this->nettoyer($cli['ID_client']) . '">' 
@@ -57,8 +55,9 @@
 
                 <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div>Chantier</div>
                 <select name="chantier" type="text" class="form-control" placeholder="" required>
-                <option value="<?= $prestation['chantier'] ?>">  <?php echo  $prestation['chantier'] ?> </option>
+                <option value=""> Choix du chantier</option>
                                     <?php
                                     foreach ($chantier as $cli):
                                         echo '<option value="' . $this->nettoyer($cli['Nom']) . '">' 
@@ -69,10 +68,13 @@
                 </select> 
                 </div>
                 </div>
-                 <div class="form-group">
+              
+                <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div>Adresse </div>
                 <select name="ville" type="text" class="form-control" placeholder="" required>
-                <option value="<?= $prestation['Ville'] ?>">  <?php echo  $prestation['Ville'] ?> </option>
+                <option value="">Choix de l'adresse</option>
+               
                                     <?php
                                     foreach ($chantiers as $cli):
                                         echo '<option value="' . $this->nettoyer($cli['Adresse']) . '">' 
@@ -83,25 +85,24 @@
                 </select> 
                 </div>
                 </div>
-                     
+
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="prix" type="text" class="form-control" placeholder="Entrez un prix" value="<?= $prestation['Prix'] ?>"required>
+                        <div>Prix </div>
+                        <input name="prix" type="text" class="form-control" placeholder="Entrez un prix ou 0 euro " required> 
                     </div>
                 </div>
 
+            
                  <div class="form-group">
-
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <div>Date de la prestation</div>
-                        <input name="date" type="date" class="form-control" placeholder="Entrez une période de début" value="<?= $prestation['Date'] ?>"required>
+                         <div>Date </div>
+                        <input name="date" type="date" class="form-control" placeholder="Entrez la date" required>
                     </div>
                 </div>
-
-                 
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <button type="submit" class="btn btn-default btn-succees"><span class="glyphicon glyphicon-log-in"> </span> modifier</button>
+                        <button type="submit" class="btn btn-default btn-succees"><span class="glyphicon glyphicon-log-in"></span> Ajouter</button>
                     </div>
                 </div>
             </form>
