@@ -49,10 +49,10 @@
 
                     <td><?= $this->nettoyer($cli['yearPrestation']) ?></td>
                     <td>  
-                        <a href="printer.php?idprestation=<?= $this->nettoyer($cli['idPrest'])?>&idclient=<?= $this->nettoyer($cli['idClient'])?>&idmois=<?= $this->nettoyer($id) ?> "type="button" class="btn btn-xs btn-danger" ><i class="far fa-file-pdf"></i>
-                        <span class="glyphicon glyphicon-file">
+                    <a href="printer.php?idprestation=<?= $this->nettoyer($cli['idPrest'])?>&idclient=<?= $this->nettoyer($cli['idClient'])?>&idmois=<?= $this->nettoyer($id) ?>&chantier=<?= $this->nettoyer($cli['VillePrestation'])?> " type="button" class="btn btn-xs btn-danger" ><i class="far fa-file-pdf"></i>
+                    <span class="glyphicon glyphicon-file">
                 
-                       </a> </td>
+                    </a> </td>
                     <!--
                     <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#MyModal">
                         <span class="glyphicon glyphicon-file">

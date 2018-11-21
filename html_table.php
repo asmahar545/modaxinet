@@ -328,7 +328,7 @@ $facturation= $req->fetch();
    </table>';
   $adresseClient='<table>
 <tr>
-<td width="150"  height="20">     '. utf8_decode($facturation['adresseClient']).' </td><td width="100" height="20" > </td>
+<td width="150"  height="20">      '. utf8_decode($facturation['adresseClient']).' </td><td width="100" height="20" > </td>
 </tr>
 
 </table>';

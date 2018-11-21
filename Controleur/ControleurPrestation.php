@@ -208,11 +208,12 @@ public function jour(){
 }
 public function exejour(){
 
-  if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
+  if ($this->requete->existeParametre("extra") && $this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
             $this->requete->existeParametre("idclient") && $this->requete->existeParametre("prix") 
             && $this->requete->existeParametre("chantier") && $this->requete->existeParametre("date") 
          )  {
-
+ 
+            $extra = $this->requete->getParametre("extra");
             $description = $this->requete->getParametre("description");
             $idclient = $this->requete->getParametre("idclient");
             $ville = $this->requete->getParametre("ville");
@@ -221,7 +222,7 @@ public function exejour(){
             $date = $this->requete->getParametre("date");
        
            
-            $this->prestation->ajouterPrestation($description,$ville,$chantier,$prix,$date,$idclient);
+            $this->prestation->ajouterPrestation($extra,$description,$ville,$chantier,$prix,$date,$idclient);
             
 
 

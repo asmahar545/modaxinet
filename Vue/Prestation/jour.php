@@ -31,6 +31,19 @@
         <div class="tab-pane fade in active" id="connexion">
             <form class="form-signin form-horizontal" role="form" action="prestation/exejour" method="post">
                 <div class="form-group">
+                   
+                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                         <div>EXTRA/REGIE</div>
+                        <select name="extra" type="text" class="form-control" placeholder="" required>
+                        <option value=""> Choix </option>
+                        <option value="0">NON</option>
+                        <option value="1">OUI</option>
+                        
+                        </select>
+                
+                </div>
+                </div>
+                <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                         <div>Description</div>
                         <textarea name="description" type="text" class="form-control" placeholder="Entrez la description de la prestation" rows=5 cols=30 required autofocus></textarea>

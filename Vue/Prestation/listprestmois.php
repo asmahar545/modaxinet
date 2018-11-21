@@ -134,12 +134,13 @@
 
                 <tr>
                     <th>N°</th>
-                    <th>Année</th>
+                    
                     <th>Description</th>
                     <th>Ville</th>
-                    <th>Nbr heure</th>
+                   
                     <th>Prix</th>
                     <th>Date</th>
+                    <th>Année</th>
                     <th>#  <th>
                    
                 </tr>
@@ -150,16 +151,21 @@
                 
                 <?php $i++ ?>
               <?php $prestation=  $this->nettoyer($prest['Description']) ?>
-            <tr>      
-                
+              <?php if ($this->nettoyer($prest['extra'])==0):?>
+                <tr>
+                <?php else : ?>
+                  <tr class="danger">  
+             <?php endif; ?>
+              
+            
                  
                     <td> <?php echo $i ?></td>
-                    <td><?= $this->nettoyer($prest['YEAR(date)']) ?></td>
+                   
                     <td><?= $this->nettoyer($prest['Description']) ?></td>
-                    <td><?= $this->nettoyer($prest['Ville']) ?></td>
-                    <td><?= $this->nettoyer($prest['Nbr_heure']) ?> </td>
+                    <td ><?= $this->nettoyer($prest['Ville']) ?></td>
                     <td><?= $this->nettoyer($prest['Prix']) ?> €</td>
                     <td><?= $this->nettoyer($prest['Date']) ?> </td>
+                    <td><?= $this->nettoyer($prest['YEAR(date)']) ?></td>
 
 
                     <td>

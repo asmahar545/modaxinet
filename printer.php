@@ -27,6 +27,23 @@ $chantierget=$facturation['chantierPrestation'];
 $requete=$bdd->query('SELECT*, month(date_service) as mois FROM service where num_cli='. $_GET['idclient'].'');
 $service= $requete->fetch();
 
+try
+{
+    $bddee = new PDO('mysql:host=localhost;dbname=modaxinet;charset=utf8', 'root', '');
+}
+catch(Exception $e)
+{
+        die('Erreur : '.$e->getMessage());
+}
+
+//nom de chantier à noter pour les regies 
+$regiereq=$bddee->query('SELECT * FROM factvueregie where VillePrestation="'. $_GET['chantier'].'" and moisPrestation= '. $_GET['idmois'].' and idClient ='. $_GET['idclient'].'');
+$regie= $regiereq->fetch();
+
+
+
+
+
 
 $pdf->Ln(5);
 $pdf->Cell(35,20,'Facture:  '.$facturation['yearPrestation'].'-225',0,0,'C');
@@ -110,7 +127,7 @@ $datehtml='<table border="1">
 <tr
 
 </table>';
-        break;
+ break;
     case 5:
             $moishtml='<table border="1">
 
@@ -247,13 +264,14 @@ $html='<table border="1">
 </table>';
 
 
-
-if(isset($service['prixService'])&& $_GET['idmois'] == $service['mois'])
+//si il ya regie 
+if(isset($regie['prixFacture'])&& $_GET['idmois'] == $regie['moisPrestation'])
 
 {
 
-$prixtotal = $service['prixService'] + $facturation['prixFacture'];
+$prixtotal = $regie['prixFacture'] + $facturation['prixFacture'];
 
+//si la tva est de 0
 if($facturation['tvaClient']==0){
     // calcul prix sans tva 
 $prixfinal='<table border="1">
@@ -281,7 +299,7 @@ $tva='<table border="1">
 else
 {
 //calcul prix avec tva 
-$prixtotal = $service['prixService']+$facturation['prixFacture'];
+$prixtotal = $regie['prixFacture']+$facturation['prixFacture'];
 $tvacalcul= ($prixtotal*21)/100;   
 $prixtotaltva=round($prixtotal+$tvacalcul,2);
 
@@ -379,11 +397,6 @@ $tva='<table border="1">
 }
 
 
-
-
-
-
-
 $descriptionPrestation='<table border="1">
 <tr>
 <td width="615"  height="400">'. utf8_decode($facturation['descriptionPrestation']).' </td><td width="120" height="400" >'.$facturation['prixFacture'].' euros</td>
@@ -400,8 +413,6 @@ $htmltab='<table border="1">
 </tr>
 
 </table>';
-
-
 
 
 $chantier='<table border="1">
@@ -427,13 +438,12 @@ $pdf->WriteHTML($html);
 $pdf->Ln(2);
 $pdf->WriteHTML($descriptionPrestation);
 
-
-if($_GET['idmois'] == $service['mois']){
+if($_GET['idmois'] == $regie['moisPrestation']){
 
 $service='<table border="1">
 <tr>
-<td width="615"  height="50">Service = '.$service['description'].' </td><td width="120" height="50" >
-'.$service['prixService'].' euros</td>
+<td width="615"  height="50">REGIE/EXTRA = '.$regie['descriptionPrestation'].' </td><td width="120" height="50" >
+'.$regie['prixFacture'].' euros</td>
 </tr>
 </tr>
 </table>';
@@ -444,6 +454,7 @@ $service='<table border="1">
 if($facturation['tvaClient']==0){
     //si il y pas de tva
 $pdf->WriteHTML($htmltab);
+$pdf->Cell(50,20,'*Taxe TVA-autoliquidation',0,0,'C');
 
 }
 $pdf->Ln(3);
@@ -461,7 +472,7 @@ $pdf->Cell(120);
  $pdf->Cell(120);
 $pdf->Ln(1);
 if($facturation['tvaClient']==0){
-$pdf->Cell(50,20,'*Taxe TVA-autoliquidation',0,0,'C');
+
 }
 $pdf->Output();
 ?>

@@ -18,9 +18,12 @@
   <div class="col-lg-6" >
  
 	<table class="table table-bordered   table-striped" > 
-<caption><h4> Bon de prestation  </h4></caption>
-     
-     
+
+    <?php if ($this->nettoyer($prestation['extra'])==0):?>
+    <caption><h4> Bon de prestation  </h4></caption>
+    <?php else : ?>
+    <caption><h4> Bon de prestation  REGIE/EXTRA</h4></caption>
+   <?php endif; ?>
      <tbody>
         <th class="text-center"colspan="15">
         <div class="col-lg-12">
@@ -98,8 +101,11 @@
 	 <div class="col-lg-6">
     <table   class="table table-bordered table-striped">
      
-
-     <caption ><h4> Bon de prestation </h4></caption>
+<?php if ($this->nettoyer($prestation['extra'])==0):?>
+    <caption><h4> Bon de prestation  </h4></caption>
+    <?php else : ?>
+    <caption><h4> Bon de prestation  REGIE/EXTRA</h4></caption>
+   <?php endif; ?>
      
      <tbody>
      	<th class="text-center"colspan="15">

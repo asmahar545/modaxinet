@@ -14,7 +14,7 @@
 
  <div class="alert alert-success">
     Votre prestation a été  ajouté<td></td>
-    <a href="prestation/listprestmois" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-log-in"></span> </a>
+    <a href="prestation/listprestmois/12" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-log-in"></span> </a>
 
 </div>
 </div>

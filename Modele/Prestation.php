@@ -48,12 +48,12 @@ class Prestation extends Modele
        public function getPrestationParMois($id)
     {
       // selection des prestations par mois 
-        $sql = "select ID_prestation,Description, Ville, Nbr_heure, Prix, Date, YEAR(date) from prestation where month(Date)=? ";
+        $sql = "select extra,ID_prestation,Description, Ville, Nbr_heure, Prix, Date, YEAR(date) from prestation where month(Date)=? ";
         return $this->executerRequete($sql, array($id));
     }
       public function getPrestationUnique($id)
     {
-        $sql = "SELECT Nom,`ID_prestation`, `Description`, prestation.Ville,`chantier`, `Nbr_heure`, `Prix`, `Date`, prestation.ID_client, `ID_period` FROM `prestation`,client WHERE prestation.ID_client = client.ID_client and ID_prestation= ?";
+        $sql = "SELECT extra,Nom,`ID_prestation`, `Description`, prestation.Ville,`chantier`, `Nbr_heure`, `Prix`, `Date`, prestation.ID_client, `ID_period` FROM `prestation`,client WHERE prestation.ID_client = client.ID_client and ID_prestation= ?";
 
         $req = $this->executerRequete($sql, array($id));
 
@@ -65,13 +65,13 @@ class Prestation extends Modele
         }
          
     }
-    public function ajouterPrestation($description,$ville,$chantier,$prix,$date,$id_client)
+    public function ajouterPrestation($extra,$description,$ville,$chantier,$prix,$date,$id_client)
     {
 
-      $sql ="INSERT INTO `prestation`( `Description`, `Ville`, `chantier`,`Prix`, `Date`,`ID_client`)
-       VALUES (?,?,?,?,?,?)";
+      $sql ="INSERT INTO `prestation`(`extra`, `Description`, `Ville`, `chantier`,`Prix`, `Date`,`ID_client`)
+       VALUES (?,?,?,?,?,?,?)";
     
-      $this->executerRequete($sql, array($description,$ville,$chantier,$prix,$date,$id_client));
+      $this->executerRequete($sql, array($extra,$description,$ville,$chantier,$prix,$date,$id_client));
     }
    
     
