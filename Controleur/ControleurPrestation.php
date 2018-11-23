@@ -469,14 +469,18 @@ public function exeAjoutjour()
     public function trimestre(){
 
         $client=$this->client->getClient();
-
+         
         $email1= $this->admin->getAdminEmail();
         $nom1=$this->admin->getAdminNom();
 
         $emaila= $email1['Email'];
         $noma= $nom1['Prénom'];
-            
-        $this->genererVue(array('clients'=>$client,'email' => $emaila,'nom'=>$noma));
+        
+
+         $chantier=$this->prestation->getchantiers();
+        $chantiers=$this->prestation->getchantiers();
+
+        $this->genererVue(array('chantier'=>$chantier,'chantiers'=>$chantiers,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
     }
     public function pdf(){
 
@@ -599,7 +603,7 @@ public function exeAjoutjour()
             $datex=$date->format("Ymd");
             //ajouter une prestation
            // $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$datex,$idclient,$idp);
-            $this->prestation->ajouterPrestation($description,$ville,$chantier,$prix,$datex,$idclient);
+            $this->prestation->ajouterPrestation(0,$description,$ville,$chantier,$prix,$datex,$idclient);
             }
 
              $email1= $this->admin->getAdminEmail();
@@ -622,14 +626,14 @@ public function exeAjoutjour()
  public function exeAjoutTrimestre()
     {
         if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
-            $this->requete->existeParametre("nbr_heure") && $this->requete->existeParametre("prix") 
+            $this->requete->existeParametre("chantier") && $this->requete->existeParametre("prix") 
             && $this->requete->existeParametre("idclient") &&
             $this->requete->existeParametre("mois") && $this->requete->existeParametre("annee"))  {
             // innitier les variables
 
             $description = $this->requete->getParametre("description");
             $ville = $this->requete->getParametre("ville");
-            $nbr_heure = $this->requete->getParametre("nbr_heure");
+            $chantier = $this->requete->getParametre("chantier");
             $prix = $this->requete->getParametre("prix");
             $idclient = $this->requete->getParametre("idclient");
             $mois = $this->requete->getParametre("mois");
@@ -651,9 +655,9 @@ public function exeAjoutjour()
              $emaila= $email1['Email'];
              $noma= $nom1['Prénom'];
             
-            $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$datex,$idclient,1);
+           
 
-          
+            $this->prestation->ajouterPrestation(0,$description,$ville,$chantier,$prix,$datex,$idclient);
              $this->genererVue(array('email' => $emaila,'nom'=>$noma));
             }
 

@@ -11,7 +11,7 @@
 
 <div class="row">
     
-<h2 class="text-center">Ajouter des prestations par trimestre</h2>
+<h2 class="text-center">Ajouter des prestations par mois</h2>
 <div class="well">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -35,20 +35,12 @@
                         <textarea name="description" type="text" class="form-control" placeholder="Entrez la description de la prestation" rows=5 cols=30 required autofocus></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="ville" type="text-center" class="form-control" placeholder="Entrez un chantier" required>
-                    </div>
-                </div>
-
                
-                  <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="nbr_heure" type="number" class="form-control" placeholder="Entrez un nombre d'heure" required>
-                    </div>
-                </div>
+               
+                 
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                        Choix du prix
                         <input name="prix" type="text" class="form-control" placeholder="Entrez un prix" required>
                     </div>
                 </div>
@@ -57,11 +49,45 @@
               
                 <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                 Choix du client
                 <select name="idclient" type="text" class="form-control" placeholder="" required>
+                    <option value=""> Choix du client</option>
                                     <?php
                                     foreach ($clients as $cli):
                                         echo '<option value="' . $this->nettoyer($cli['ID_client']) . '">' 
                                         .  $this->nettoyer($cli['Nom'])  . '</option>';
+                                        ?>
+                                    <?php endforeach; ?>
+
+                </select> 
+                </div>
+                </div>
+                <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div>Chantier</div>
+                <select name="chantier" type="text" class="form-control" placeholder="" required>
+                <option value=""> Choix du chantier</option>
+                                    <?php
+                                    foreach ($chantier as $cli):
+                                        echo '<option value="' . $this->nettoyer($cli['Nom']) . '">' 
+                                        .  $this->nettoyer($cli['Nom'])  . '</option>';
+                                        ?>
+                                    <?php endforeach; ?>
+
+                </select> 
+                </div>
+                </div>
+              
+                <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div>Adresse </div>
+                <select name="ville" type="text" class="form-control" placeholder="" required>
+                <option value="">Choix de l'adresse</option>
+               
+                                    <?php
+                                    foreach ($chantiers as $cli):
+                                        echo '<option value="' . $this->nettoyer($cli['Adresse']) . '">' 
+                                        .  $this->nettoyer($cli['Adresse'])  . '</option>';
                                         ?>
                                     <?php endforeach; ?>
 
@@ -90,7 +116,7 @@
                    <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4"> Choix de l'année
                     <select name="annee" type="number" class="form-control" placeholder="" required>
-                        <option value=""> Choix du l'année</option>
+                        <option value=""> Choix de l'année</option>
                         <option value="2018">2018</option>
                         <option value="2019">2019</option>
                         <option value="2020">2020</option>

@@ -295,6 +295,8 @@ $facturation= $req->fetch();
     $this->Image('logo.png',10,6,80);
     // Police Arial gras 15
     $this->SetFont('Times','B',12);
+    $this->Cell(40,30,'MODAXINET SPRL',0,0,'C');
+    $this->Ln(5);
     $this->Cell(40,30,'Rue Charles Meert, 9',0,0,'C');
      // Décalage à droite
 
@@ -303,17 +305,17 @@ $facturation= $req->fetch();
      
      // Saut de ligne
      $this->Ln(5);
-     $this->Cell(28,30,'1030 Bruxelles',0,0,'C');
+     $this->Cell(27,30,'1030 Bruxelles',0,0,'C');
      // Saut de ligne
      $this->Ln(5);
-     $this->Cell(42,30,' TVA BE06507811512 ',0,0,'C');
+     $this->Cell(41,30,'TVA BE06507811512 ',0,0,'C');
      // Saut de ligne
      $this->Ln(5);
-    $this->Cell(40,30,'TEL: +32 483546550',0,0,'C');
+    $this->Cell(39,30,'TEL: +32 483546550',0,0,'C');
 
      // Saut de ligne
     $this->Ln(5);
-    $this->Cell(66,30,'COMPTE ING BE04363159690231',0,0,'C');
+    $this->Cell(65,30,'COMPTE ING BE04363159690231',0,0,'C');
  
  
    
@@ -322,7 +324,7 @@ $facturation= $req->fetch();
     $this->Cell(100);
      $client='<table>
    <tr>
-   <td width="150"  height="20">'. utf8_decode($facturation['nomClient']).',</td><td width="100" height="20" ></td>
+   <td width="150"  height="20">'. utf8_decode($facturation['nomClient']).'</td><td width="100" height="20" ></td>
    </tr>
 
    </table>';
@@ -349,13 +351,8 @@ $codeClient='<table>
        $this->Ln(3);
     $this->Cell(100);
        $this->WriteHTML($codeClient);
-     $this->Ln(5);
+    
       
-  
-    
-    $this->Cell(246,20,'',0,0,'C');
-    
-   
      $this->SetFont('Times','U',20);
 
 

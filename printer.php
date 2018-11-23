@@ -54,13 +54,19 @@ $pdf->Cell(80);
 
 $pdf->Ln(5);
 
-$pdf->Cell(33,20,'Date: 14/'. $_GET['idmois'].'/ '.$facturation['yearPrestation'].' ',0,0,'C');
+$pdf->Cell(33,20, 'Date: '.date("d-m-Y").' ',0,0,'C');
 // Décalage à droite
 $pdf->Cell(80);
 
 
 $pdf->Ln(5);
 $pdf->Cell(29,20,'Client: MO/0'.$facturation['numcli'].'',0,0,'C');
+// Décalage à droite
+    $pdf->Cell(80);
+   ;
+
+$pdf->Ln(5);
+$pdf->Cell(51,20,'TVA Client: '.$facturation['numtvaClient'].'',0,0,'C');
 // Décalage à droite
     $pdf->Cell(80);
    ;
@@ -73,26 +79,26 @@ $i=$_GET['idmois'];
     case 1:
     $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >31/01/'.$facturation['yearPrestation'].' </td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >31/01/'.$facturation['yearPrestation'].' </td>
 </tr>
 <tr
 
 </table>';
     $moishtml='<table border="1">
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Janvier </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Janvier </td>
 </tr>
 </table>';
     break; 
     case 2:
     $moishtml='<table border="1">
 <tr>
-<td width="150" " height="50">Mois: </td><td width="100" height="50" >Fevrier </td>
+<td width="150" " height="50">Mois: </td><td width="120" height="50" >Fevrier </td>
 </tr>
 </table>';
  $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >28/02/'.$facturation['yearPrestation'].' </td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >28/02/'.$facturation['yearPrestation'].' </td>
 </tr>
 <tr
 
@@ -102,12 +108,12 @@ $i=$_GET['idmois'];
     case 3:
    $moishtml='<table border="1">
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Mars </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Mars </td>
 </tr>
 </table>';
 $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >31/03/'.$facturation['yearPrestation'].'</td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >31/03/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
@@ -117,12 +123,12 @@ $datehtml='<table border="1">
             $moishtml='<table border="1">
 
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Avril </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Avril </td>
 </tr>
 </table>';
 $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >30/04/'.$facturation['yearPrestation'].'</td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >30/04/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
@@ -132,43 +138,43 @@ $datehtml='<table border="1">
             $moishtml='<table border="1">
 
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Mai </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Mai </td>
 </tr>
 </table>';
 $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >31/05/'.$facturation['yearPrestation'].'</td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >31/05/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
 </table>';
 
 
-        break;
+    break;
 
     case 6:
            $moishtml='<table border="1">
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Juin </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Juin </td>
 </tr>
 </table>';
 $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >30/06/'.$facturation['yearPrestation'].'</td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >30/06/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
 </table>';
-        break;
+    break;
     case 7:
 $moishtml='<table border="1">
 <tr>
-<td width="150" height="50">Mois: </td><td width="100" height="50" >Juillet </td>
+<td width="150" height="50">Mois: </td><td width="120" heigh="50" >Juillet </td>
 </tr>
 </table>';
 $datehtml='<table border="1">
 <tr>
-<td width="150" height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >31/07/'.$facturation['yearPrestation'].'</td>
+<td width="150" height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >31/07/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
@@ -187,17 +193,17 @@ $datehtml='<table border="1">
 <tr
 
 </table>';
-        break;
+     break;
      case 9:
             $moishtml='<table border="1">
 
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Septembre </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Septembre </td>
 </tr>
 </table>';
 $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >30/09/'.$facturation['yearPrestation'].'</td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >30/09/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
@@ -207,12 +213,12 @@ $datehtml='<table border="1">
             $moishtml='<table border="1">
 
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Octobre </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Octobre </td>
 </tr>
 </table>';
 $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >31/10/'.$facturation['yearPrestation'].'</td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >31/10/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
@@ -222,28 +228,27 @@ $datehtml='<table border="1">
             $moishtml='<table border="1">
 
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Novembre  </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >Novembre  </td>
 </tr>
 </table>';
  $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >30/11/'.$facturation['yearPrestation'].' </td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >30/11/'.$facturation['yearPrestation'].' </td>
 </tr>
 <tr
 
 </table>';
         break;
      case 12:
-            $moishtml='<table border="1">
-
+ $moishtml='<table border="1">
 <tr>
-<td width="150"  height="50">Mois: </td><td width="100" height="50" >Decembre </td>
+<td width="150"  height="50">Mois: </td><td width="120" height="50" >'.utf8_decode("Décembre").'</td>
 </tr>
 </table>';
 
 $datehtml='<table border="1">
 <tr>
-<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="100" height="50" >31/12/'.$facturation['yearPrestation'].'</td>
+<td width="150"  height="50">'.utf8_decode("Date d'échéance :").'</td><td width="120" height="50" >31/12/'.$facturation['yearPrestation'].'</td>
 </tr>
 <tr
 
@@ -264,16 +269,16 @@ $html='<table border="1">
 </table>';
 
 
-//si il ya regie 
+//si il ya régie 
 if(isset($regie['prixFacture'])&& $_GET['idmois'] == $regie['moisPrestation'])
 
 {
 
 $prixtotal = $regie['prixFacture'] + $facturation['prixFacture'];
 
-//si la tva est de 0
-if($facturation['tvaClient']==0){
-    // calcul prix sans tva 
+    //si la tva est de 0
+    if($facturation['tvaClient']==0){
+              // calcul prix sans tva 
 $prixfinal='<table border="1">
 
 <tr>
@@ -291,16 +296,17 @@ $prixhtva='<table border="1">
 $tva='<table border="1">
 
 <tr>
-<td width="134"  height="50">TVA: </td><td width="120" height="50" > *0  </td>
+<td width="134"  height="50">TVA: </td><td width="120" height="50" > 0 euros  </td>
 </tr>
 </table>';
 
 }
 else
 {
-//calcul prix avec tva 
+//calcul prix avec tva 21 
+if($facturation['tvaClient']==1){
 $prixtotal = $regie['prixFacture']+$facturation['prixFacture'];
-$tvacalcul= ($prixtotal*21)/100;   
+ $tvacalcul= ($prixtotal*21)/100;   
 $prixtotaltva=round($prixtotal+$tvacalcul,2);
 
 
@@ -323,17 +329,54 @@ $prixhtva='<table border="1">
 $tva='<table border="1">
 
 <tr>
-<td width="134"  height="50">TVA: </td><td width="120" height="50" >'.$tvaarondir.' </td>
+<td width="134"  height="50">TVA: </td><td width="120" height="50" >'.$tvaarondir.' euros </td>
+</tr>
+</table>';
+   }
+   
+   else{ 
+
+// tva 6 pour cent
+$prixtotal = $regie['prixFacture']+$facturation['prixFacture'];
+$tvacalcul= ($prixtotal*6)/100;   
+$prixtotaltva=round($prixtotal+$tvacalcul,2);
+
+
+//arrondir la tva 
+
+$tvaarondir=round($tvacalcul,2);
+$prixfinal='<table border="1">
+
+<tr>
+<td width="134"  height="50">Total: </td><td width="120" height="50" >'.$prixtotaltva.' euros </td>
+</tr>
+</table>';
+
+$prixhtva='<table border="1">
+
+<tr>
+<td width="134"  height="50">Prix hors TVA: </td><td width="120" height="50" >'.$prixtotal.' euros </td>
+</tr>
+</table>';
+$tva='<table border="1">
+
+<tr>
+<td width="134"  height="50">TVA: </td><td width="120" height="50" >'.$tvaarondir.' euros</td>
 </tr>
 </table>';
 
 
 }
+
+
+}
 }
 
+
+// pas de Régie
 else
-{
-if($facturation['tvaClient']==0){
+    {
+    if($facturation['tvaClient']==0){
     //calcul sans tva hors services
 $prixfinal='<table border="1">
 
@@ -354,18 +397,20 @@ $prixhtva='<table border="1">
 $tva='<table border="1">
 
 <tr>
-<td width="134"  height="50">TVA: </td><td width="120" height="50" > 0* </td>
+<td width="134"  height="50">TVA: </td><td width="120" height="50" > 0 euros </td>
 </tr>
 </table>';
 
-}
-else{
-//calcul prix avec tva sans service
+    }
+    else{
+
+        if($facturation['tvaClient']==1){
+    //calcul prix avec tva 21 % sans régie
 
 $tvacalcul= ($facturation['prixFacture']*21)/100;   
 $prixtotaltva=round($facturation['prixFacture']+$tvacalcul,2);
 
-//arrondir la tva 
+    //arrondir la tva 
 
 $tvaarondir=round($tvacalcul,2);
 $prixfinal='<table border="1">
@@ -388,11 +433,45 @@ $tva='<table border="1">
 <td width="134"  height="50">TVA: </td><td width="120" height="50" > '.$tvaarondir.' euros </td>
 </tr>
 </table>';
+    }
+    else{
+        //tva client est à 6 % sans régie
+
+$tvacalcul= ($facturation['prixFacture']*6)/100;   
+$prixtotaltva=round($facturation['prixFacture']+$tvacalcul,2);
+
+ //arrondir la tva 
+
+$tvaarondir=round($tvacalcul,2);
+$prixfinal='<table border="1">
+
+<tr>
+<td width="134"  height="50">Total: </td><td width="120" height="50" >'.$prixtotaltva.' euros </td>
+</tr>
+</table>';
+
+$prixhtva='<table border="1">
+
+<tr>
+<td width="134"  height="50">Prix hors TVA: </td><td width="120" height="50" >'.$facturation['prixFacture'].' euros </td>
+</tr>
+</table>';
+
+$tva='<table border="1">
+
+<tr>
+<td width="134"  height="50">TVA: </td><td width="120" height="50" > '.$tvaarondir.' euros </td>
+</tr>
+</table>';
+    
 
 
 
+    }
 
-}
+
+
+    }
 
 }
 
@@ -417,7 +496,7 @@ $htmltab='<table border="1">
 
 $chantier='<table border="1">
 <tr>
-<td width="150"  height="50">Chantier : </td><td width="350" height="50" >'.utf8_decode($facturation['chantierPrestation']).'  </td>
+<td width="150"  height="50">Chantier : </td><td width="466" height="50" >'.utf8_decode($facturation['chantierPrestation']).'  </td>
 </tr>
 <tr>
 
@@ -427,9 +506,9 @@ $chantier='<table border="1">
 
 
 
-$pdf->Cell(120);
+$pdf->Cell(116);
 $pdf->WriteHTML($datehtml);
-$pdf->Cell(120);
+$pdf->Cell(116);
 $pdf->WriteHTML($moishtml);
 $pdf->Ln(5);
 $pdf->WriteHTML($chantier);

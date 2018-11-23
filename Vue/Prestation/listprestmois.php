@@ -171,8 +171,8 @@
                     <td>
                     <a href="prestation/jour"  alt="Ajouter des prestations par semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>j </a>
                     <a href="prestation"  alt="Ajouter des prestations par semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>s </a>
-                    <a href="prestation/ajoutjour" alt="Ajouter des prestations 2 fois semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>2j </a> 
-                    <a href="prestation/ajoutjours" alt="Ajouter des prestations 3 fois semaine"class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span>3j </a>   
+                    <a href="prestation/ajoutjour" alt="Ajouter des prestations 2 fois semaine"class="btn btn-xs btn-success  disabled"><span class="glyphicon glyphicon-plus"></span>2j </a> 
+                    <a href="prestation/ajoutjours" alt="Ajouter des prestations 3 fois semaine"class="btn btn-xs btn-success disabled"><span class="glyphicon glyphicon-plus"></span>3j </a>   
                     <a href="prestation/trimestre" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-plus"></span>m</a> 
                          
                     <a  href="prestation/pdf/<?=$this->nettoyer($prest['ID_prestation'])?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-file"></span> </a>

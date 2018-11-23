@@ -28,8 +28,12 @@
         <div class="tab-pane fade in active" id="connexion">
             <form class="form-signin form-horizontal" role="form" action="prestation/exeAjoutClient" method="post">
                  <div class="form-group">
+
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="numeroclient" type="number" class="form-control" placeholder="Entrez son numeroclient" required autofocus>
+                        <div class="input-group">
+                        <span class="input-group-addon">MO/</span>
+                        <input name="numeroclient" type="text" class="form-control" placeholder="Entrez le numéro client" required autofocus>
+                    </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -54,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="contact" type="number" class="form-control" placeholder="Entrez son contact" required autofocus>
+                        <input name="contact" type="text" class="form-control" placeholder="Entrez son contact" required autofocus>
                     </div>
                 </div>
 
@@ -69,13 +73,17 @@
                     </div>
                 </div>
                     <div class="form-group">
+
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="num_tva" type="number" class="form-control" placeholder="Entrez son numero de numero de tva" required>
+                        <div class="input-group">
+                        <span class="input-group-addon">BE</span>
+                        <input name="num_tva" type="text" class="form-control" placeholder="Entrez son numero" required>
+                    </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input name="mobile" type="number" class="form-control" placeholder="Entrez son mobile " required>
+                        <input name="mobile" type="number" class="form-control" placeholder="Entrez son mobile"required>
                     </div>
                 </div>
                 <div class="form-group">
