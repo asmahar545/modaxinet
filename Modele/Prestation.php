@@ -16,6 +16,25 @@ class Prestation extends Modele
      * @param type $idGenre
      * @return type
      */
+      
+      public function updatefacture($num){
+
+      $sql="UPDATE `admin` SET `numfact`= ?";
+      return $this->executerRequete($sql,array($num));
+      }
+
+      public function setfacture(){
+
+      $sql="SELECT numfact FROM `admin`";
+      $req=$this->executerRequete($sql);
+      if ($req->rowCount() == 1) {
+            return $req->fetch();  // Accès à la première ligne de résultat
+        }
+        else {
+            throw new Exception("Aucun album ne correspond à l'identifiant '$id'");
+        }
+       
+      }
 
       public function getchantiers(){
 
@@ -33,7 +52,7 @@ class Prestation extends Modele
       }
        public function getPrestation()
       
-    {
+      {
         $sql = "SELECT `ID_prestation`, `Description`, `Ville`, `Nbr_heure`, `Prix`, `Date`, `ID_client`, `ID_period` FROM `prestation` WHERE 1";
         return $this->executerRequete($sql);
     }

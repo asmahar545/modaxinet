@@ -17,7 +17,25 @@
     <ul class="breadcrumb">
     <li><span class="glyphicon glyphicon-home"></span><a >Facturations</a></li>
 </ul>
-
+  <div class="tab-content">
+        <div class="tab-pane fade in active" id="connexion">
+            <form class="form-signin form-horizontal" role="form" action="prestation/exefacture"  method="post">
+                <div class="form-group">
+                
+                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                         <div>Modifier le numéro de la facture </div>
+                        <input name="numfact" type="number" value="<?= $numfact['numfact']?>"  class="form-control" placeholder="Entrez le numéro de la facture" required>
+                    </div>
+               
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                        <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span>modifier</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 <h2 class="text-center">Liste des facturations par mois </h2>
     <div class="table-responsive">
 
@@ -165,7 +183,7 @@
   });
 </script>
 
-<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>

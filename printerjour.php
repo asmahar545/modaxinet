@@ -61,7 +61,7 @@ $pdf->Cell(80);
 
 $pdf->Ln(5);
 
-$pdf->Cell(33,20,'Date: 29/ '.$_GET['idmois'].' /'.$facturation['yearPrestation'].'',0,0,'C');
+$pdf->Cell(33,20, 'Date: '.date("d-m-Y").' ',0,0,'C');
 // Décalage à droite
 $pdf->Cell(80);
 

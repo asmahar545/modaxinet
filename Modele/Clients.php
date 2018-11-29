@@ -54,10 +54,12 @@ class Clients extends Modele
      * @param type $courriel
      * @param type $mdp
      */
-    public function ajouterClient($numerocli,$nom,$adresse, $codePostal, $ville, $contact, $email, $telFixe, $num_tva, $mobile)
+    public function ajouterClient($numerocli,$nom,$nomfact,$adresse, $codePostal, $ville, $contact, $email, $telFixe, $num_tva, $mobile,$TVA)
     {
-        $sql = "INSERT INTO `client`(`numero_client`,`Nom`, `Adresse`, `Codepostal`, `Ville`, `Contact`, `Email`, `TelFixe`, `Num_tva`, `Mobile`) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        $this->executerRequete($sql, array($numerocli,$nom,$adresse, $codePostal, $ville, $contact, $email, $telFixe, $num_tva, $mobile));
+     
+        $sql="INSERT INTO `client`(`numero_client`, `Nom`, `nom_fact`, `Adresse`, `Codepostal`, `Ville`, `Contact`, `Email`, `TelFixe`, `Num_tva`, `Mobile`, `TVA`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        $this->executerRequete($sql, array($numerocli,$nom,$nomfact,$adresse, $codePostal, $ville, $contact, $email, $telFixe, $num_tva, $mobile,$TVA));
     }
 
     /**

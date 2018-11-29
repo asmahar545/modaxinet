@@ -49,10 +49,15 @@
 
                     <td><?= $this->nettoyer($cli['yearPrestation']) ?></td>
                     <td>  
-                    <a href="printer.php?idprestation=<?= $this->nettoyer($cli['idPrest'])?>&idclient=<?= $this->nettoyer($cli['idClient'])?>&idmois=<?= $this->nettoyer($id) ?>&chantier=<?= $this->nettoyer($cli['VillePrestation'])?> " type="button" class="btn btn-xs btn-danger" ><i class="far fa-file-pdf"></i>
+                    <a href="printer.php?idprestation=<?= $this->nettoyer($cli['idPrest'])?>&idclient=<?= $this->nettoyer($cli['idClient'])?>&idmois=<?= $this->nettoyer($id) ?>&chantier=<?= $this->nettoyer($cli['VillePrestation'])?>&idannee=<?= $this->nettoyer($cli['yearPrestation'])?> " type="button" class="btn btn-xs btn-danger" ><i class="far fa-file-pdf"></i>
                     <span class="glyphicon glyphicon-file">
                 
-                    </a> </td>
+                    </a> 
+
+                   <a href="printerjour.php?idprestation=<?= $this->nettoyer($cli['idPrest'])?>&idclient=<?= $this->nettoyer($cli['idClient'])?>&idmois=<?= $this->nettoyer($id) ?>&chantier=<?= $this->nettoyer($cli['VillePrestation'])?>&idannee=<?= $this->nettoyer($cli['yearPrestation'])?> " type="button" class="btn btn-xs btn-success" ><i class="far fa-file-pdf"></i>
+                    <span class="glyphicon glyphicon-file">
+                
+                    </a></td>
                     <!--
                     <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#MyModal">
                         <span class="glyphicon glyphicon-file">
@@ -248,7 +253,7 @@ $(function () {
   });
 </script>
 
-<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>

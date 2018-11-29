@@ -96,16 +96,13 @@
 
                 </select> 
                   
-                   </div>
+                  </div>
                     <div class="modal-footer">
                   <button  type="submit" class="btn btn-default btn-danger"><span class="glyphicon glyphicon-log-in"type="button"
                    class="btn btn-secondary" >Supprimer</button>
                     <button type="button"  data-dismiss="modal" class="btn btn-primary">Annuler</button>
-                 </div>      
-                    
-
-             
-                    
+                  </div>      
+                 
                     </div>
                   </div>
     </div>

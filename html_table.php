@@ -289,6 +289,7 @@ function Header()
     {
         die('Erreur : '.$e->getMessage());
     }
+    
 $req = $bdd->query('SELECT * FROM factvue where idPrest='. $_GET['idprestation'].' and idClient ='. $_GET['idclient'].'');
 $facturation= $req->fetch();
     // Logo
@@ -318,17 +319,22 @@ $facturation= $req->fetch();
     $this->Cell(65,30,'COMPTE ING BE04363159690231',0,0,'C');
  
  
-   
-   
-    $this->Ln(5);
+    $this->Ln(3);
     $this->Cell(100);
-     $client='<table>
+
+   $presentation='<table border="0">
    <tr>
-   <td width="150"  height="20">'. utf8_decode($facturation['nomClient']).'</td><td width="100" height="20" ></td>
+   <td bgcolor="#e6e6ff" width="280" height="210">-</td><td  width="100" height="20" ></td>
+   </tr>
+   </table>';
+   $this->WriteHTML($presentation);
+   $client='<table >
+   <tr>
+   <td width="150"  height="20">'. utf8_decode($facturation['nomClient']).'</td><td  width="100" height="20" ></td>
    </tr>
 
-   </table>';
-  $adresseClient='<table>
+  </table>';
+ $adresseClient='<table>
 <tr>
 <td width="150"  height="20">      '. utf8_decode($facturation['adresseClient']).' </td><td width="100" height="20" > </td>
 </tr>
@@ -342,9 +348,10 @@ $codeClient='<table>
 
 </table>';
 
-
+    $this->Ln(2);
+    $this->Cell(100);
    $this->WriteHTML($client);
-
+    
     $this->Ln(2);
     $this->Cell(100);
        $this->WriteHTML($adresseClient);

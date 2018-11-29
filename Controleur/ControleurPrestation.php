@@ -754,31 +754,39 @@ public function exesupprprestation(){
   public function exeAjoutClient()
     {
         if ($this->requete->existeParametre("nom") && 
+            $this->requete->existeParametre("nomfact") &&
             $this->requete->existeParametre("adresse") &&
             $this->requete->existeParametre("codepostal") &&
             $this->requete->existeParametre("ville")  && 
             $this->requete->existeParametre("contact") &&
             $this->requete->existeParametre("email") && 
             $this->requete->existeParametre("telFixe") && 
-            $this->requete->existeParametre("num_tva")  && 
-            $this->requete->existeParametre("mobile") && 
-            $this->requete->existeParametre("numeroclient"))  
+            $this->requete->existeParametre("num_tva")  &&
+            $this->requete->existeParametre("tva")  &&
+            $this->requete->existeParametre("mobile") &&
+            $this->requete->existeParametre("numeroclient")  )  
 
         {
 
-            $nom = $this->requete->getParametre("nom");
-            $adresse = $this->requete->getParametre("adresse");
-            $codepostal = $this->requete->getParametre("codepostal");
-            $ville = $this->requete->getParametre("ville");
-            $contact = $this->requete->getParametre("contact");
-            $email = $this->requete->getParametre("email");
-            $telFixe = $this->requete->getParametre("telFixe");
-            $num_tva = $this->requete->getParametre("num_tva");
-            $mobile = $this->requete->getParametre("mobile");
-            $numeroclient = $this->requete->getParametre("numeroclient");
+          $nom = $this->requete->getParametre("nom");
+          $nomfact = $this->requete->getParametre("nomfact");
+          $adresse = $this->requete->getParametre("adresse");
+          $codepostal = $this->requete->getParametre("codepostal");
+          $ville = $this->requete->getParametre("ville");
+          $contact = $this->requete->getParametre("contact");
+          $email = $this->requete->getParametre("email");
+          $telFixe = $this->requete->getParametre("telFixe");
+          $num_tva = $this->requete->getParametre("num_tva");
+          $tva = $this->requete->getParametre("tva");
+          $mobile = $this->requete->getParametre("mobile");
+          $numeroclient = $this->requete->getParametre("numeroclient");
 
-            $this->client->ajouterClient($numeroclient,$nom,$adresse,$codepostal,$ville, $contact, $email, $telFixe, $num_tva, $mobile);
-             //nom et prenom d'admin
+          
+
+
+
+            $this->client->ajouterClient($numeroclient,$nom,$nomfact,$adresse,$codepostal,$ville, $contact, $email, $telFixe, $num_tva, $mobile,$tva);
+            //nom et prenom d'admin
             $email1= $this->admin->getAdminEmail();
             $nom1=$this->admin->getAdminNom();
 
@@ -800,23 +808,33 @@ public function exesupprprestation(){
 
         $client=$this->client->getClient();
        
-        
+        $numfact=$this->prestation->setfacture();
         $email1= $this->admin->getAdminEmail();
         $nom1=$this->admin->getAdminNom();
 
         $emaila= $email1['Email'];
         $noma= $nom1['Prénom'];
 
-        $this->genererVue(array('email' => $emaila,'nom'=>$noma,'client'=>$client));                  
+        $this->genererVue(array('numfact'=>$numfact,'email' => $emaila,'nom'=>$noma,'client'=>$client));                  
          
 
     }
+    public function exefacture(){
+   if ($this->requete->existeParametre("numfact")){
+        
+         $numfact = $this->requete->getParametre("numfact");
+        $this->prestation->updatefacture($numfact);
 
+        $this->executerAction("facturationParMois");
+
+     }
+    else
+
+   throw new Exception("Action impossible : tous les paramètres ne sont pas définis");
+    
+
+    }
     public function ajoutServices(){
-
-
-       
-     
 
         $client=$this->client->getClient();
         $chantier=$this->prestation->getchantier();
