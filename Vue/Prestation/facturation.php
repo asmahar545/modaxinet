@@ -5,7 +5,7 @@
 <br>
 <br>
 
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
@@ -17,7 +17,12 @@
 <div class="row">
     <ul class="breadcrumb">
     <li><span class="glyphicon glyphicon-home"></span><a> Facturation</a></li>
+    <li><span class="glyphicon glyphicon-home"></span><a>Home</a></li>
+     <butto>  <a href="prestation/loger"
+        class="btn btn-sm btn-warning"> <i class="fas fa-reply" style="font-size:20px" ></i></a> 
+    </span></button>
 </ul>
+
  <h2 class="text-center">Liste des facturations du mois</h2>
     <div class="table-responsive">
       <table id="example1"  class="table table-bordered table-striped">

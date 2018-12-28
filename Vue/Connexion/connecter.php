@@ -14,9 +14,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap.min.css">
 
 <div class="row">
-    <ul class="breadcrumb">
-    <li><span class="glyphicon glyphicon-home"></span> <a >Prestations</a></li>
-</ul>
+  
+
  <h2 class="text-center">Liste des prestations</h2>
     <div class="table-responsive">
         <table id="example1"  class="table table-bordered table-striped">
@@ -29,7 +28,7 @@
                     <th>Prix</th>
                     <th>Date</th>
                     <th>#</th>
-                    <!--th></th-->  <!-- Colonne des boutons d'action -->
+                   
                 </tr>
             </thead>
              <?php $i=0 ?>

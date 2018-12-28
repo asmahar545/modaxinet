@@ -20,12 +20,12 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> Bienvenue, <?= $this->nettoyer($nom) ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="client/">Informations personnelles</a></li>
+                        <li><a href="prestation/loger">Home</a></li>
                         <li class="divider"></li>
                         <li><a href="">Se déconnecter</a></li>
                     </ul>
                 </li>
-               
+    
             <?php else: ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

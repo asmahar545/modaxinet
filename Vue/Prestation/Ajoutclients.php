@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <?php require 'Vue/_Commun/barreNavigation.php'; ?>
 <?php $this->titre = "AjoutClient"; ?>
@@ -13,6 +14,12 @@
     </div>
 <?php endif; ?>
 <h2 class="text-center">Ajouter un nouveau client </h2>
+<ul class="breadcrumb">
+    <li><span class="glyphicon glyphicon-home"></span><a>Ajout</a></li>
+     <butto>  <a href="prestation/loger"
+        class="btn btn-sm btn-warning"> <i class="fas fa-reply" style="font-size:20px" ></i></a> 
+    </span></button>
+</ul>
 <div class="well">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">

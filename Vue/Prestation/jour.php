@@ -69,19 +69,19 @@
                 <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                 <div>Chantier</div>
-                <select name="chantier" type="text" class="form-control" placeholder="" required>
-                <option value=""> Choix du chantier</option>
-                                    <?php
-                                    foreach ($chantier as $cli):
-                                        echo '<option value="' . $this->nettoyer($cli['Nom']) . '">' 
-                                        .  $this->nettoyer($cli['Nom'])  . '</option>';
-                                        ?>
-                                    <?php endforeach; ?>
+                <select name="adresse" type="text" class="form-control" placeholder="" required>
+                <option style="font-weight: bold;" value="">Choix du chantier</option>
+                             <?php
+                             foreach ($chantier as $cli):
+                             echo '<option  value="' . $this->nettoyer($cli['ID_chantier']) . '">' 
+                              .  $this->nettoyer($cli['Nom'])  .'/'. $this->nettoyer($cli['Adresse'])  .'</br></option>';
+                              ?>
+                            <?php endforeach; ?>
 
                 </select> 
                 </div>
                 </div>
-              
+               <!---
                 <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                 <div>Adresse </div>
@@ -89,16 +89,16 @@
                 <option value="">Choix de l'adresse</option>
                
                                     <?php
-                                    foreach ($chantiers as $cli):
-                                        echo '<option value="' . $this->nettoyer($cli['Adresse']) . '">' 
-                                        .  $this->nettoyer($cli['Adresse'])  . '</option>';
+                                    //foreach ($chantiers as $cli):
+                                    //    echo '<option value="' . $this->nettoyer($cli['Adresse']) . '">' 
+                                     //   .  $this->nettoyer($cli['Adresse'])  . '</option>';
                                         ?>
-                                    <?php endforeach; ?>
+                                    ..<?php //endforeach; ?>
 
                 </select> 
                 </div>
                 </div>
-
+                --->
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                         <div>Prix </div>

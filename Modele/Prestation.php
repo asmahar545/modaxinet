@@ -38,8 +38,25 @@ class Prestation extends Modele
 
       public function getchantiers(){
 
-        $sql="SELECT * FROM `chantier` ";
+        $sql="SELECT * FROM chantier ORDER BY Nom ASC ";
         return $this->executerRequete($sql);
+      }
+      public function getAdresseChantier($id){
+     
+        //requete return l'adresse
+        $sql="SELECT * FROM `chantier` WHERE ID_chantier = ?";
+        $req =$this->executerRequete($sql, array($id));
+
+        //Accès à la première ligne de résultat, le nom du chantier 
+      
+        if ($req->rowCount() == 1) {
+            return $req->fetch();  
+         }
+        else {
+            throw new Exception("Aucun album ne correspond à l'identifiant ");
+        }
+
+       
       }
 
         

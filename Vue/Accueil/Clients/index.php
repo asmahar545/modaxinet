@@ -23,7 +23,7 @@
         <table  id="example2" class="table table-hover table-condensed">
             <thead>
                 <tr>
-                     <th>N°</th>
+                    <th>N°</th>
                     <th>Nom</th>
                     <th>Adresse</th>
                     <th>Codepostal</th>

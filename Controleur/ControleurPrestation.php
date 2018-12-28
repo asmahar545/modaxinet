@@ -208,21 +208,25 @@ public function jour(){
 }
 public function exejour(){
 
-  if ($this->requete->existeParametre("extra") && $this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
+  if ($this->requete->existeParametre("extra") && $this->requete->existeParametre("description")  &&
             $this->requete->existeParametre("idclient") && $this->requete->existeParametre("prix") 
-            && $this->requete->existeParametre("chantier") && $this->requete->existeParametre("date") 
+            && $this->requete->existeParametre("adresse") && $this->requete->existeParametre("date") 
          )  {
  
             $extra = $this->requete->getParametre("extra");
             $description = $this->requete->getParametre("description");
             $idclient = $this->requete->getParametre("idclient");
-            $ville = $this->requete->getParametre("ville");
-            $chantier= $this->requete->getParametre("chantier");
+          
+            //adresse=id du chantier
+            $adresse=$this->requete->getParametre("adresse");
             $prix = $this->requete->getParametre("prix");
             $date = $this->requete->getParametre("date");
-       
-           
-            $this->prestation->ajouterPrestation($extra,$description,$ville,$chantier,$prix,$date,$idclient);
+          
+            $idChantier= $this->prestation->getAdresseChantier($adresse);
+
+            $ville= $idChantier['Nom'];
+            $adresse= $idChantier['Adresse'];
+            $this->prestation->ajouterPrestation($extra,$description,$adresse,$ville,$prix,$date,$idclient);
             
 
 

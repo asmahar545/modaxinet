@@ -4,6 +4,7 @@
 <br>
 <br>
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -16,6 +17,10 @@
 <div class="row">
     <ul class="breadcrumb">
     <li><span class="glyphicon glyphicon-home"></span><a >Facturations</a></li>
+    <li><span class="glyphicon glyphicon-home"></span><a>Home</a></li>
+     <butto>  <a href="prestation/loger"
+        class="btn btn-sm btn-warning"> <i class="fas fa-reply" style="font-size:20px" ></i></a> 
+    </span></button>
 </ul>
   <div class="tab-content">
         <div class="tab-pane fade in active" id="connexion">

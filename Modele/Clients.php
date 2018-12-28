@@ -21,7 +21,7 @@ class Clients extends Modele
 
     public function getClient()
     {
-        $sql = "SELECT `ID_client`, `Nom`, `Adresse`, `Codepostal`, `Ville`, `Contact`, `Email`, `TelFixe`, `Num_tva`, `Mobile` FROM `client` WHERE 1";
+        $sql = "SELECT `ID_client`, `Nom`, `Adresse`, `Codepostal`, `Ville`, `Contact`, `Email`, `TelFixe`, `Num_tva`, `Mobile` FROM `client`  order by Nom ASC";
         return $this->executerRequete($sql);
       
     }
