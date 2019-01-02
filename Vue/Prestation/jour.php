@@ -41,26 +41,43 @@
                         
                         </select>
                 
-                </div>
-                </div>
-                <div class="form-group">
+            </div>
+            </div>
+             <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                         <div>Description</div>
                         <textarea name="description" type="text" class="form-control" placeholder="Entrez la description de la prestation" rows=5 cols=30 required autofocus></textarea>
                     </div>
-                </div>
+            </div>
+            <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    
+            <div> Choix du client et du chantier</div>
+            <select name="idchantier" type="text" class="form-control" placeholder="" required>
+                <option value=""> Choix du client et du chantier </option>
+                             <?php
+                             foreach ($chantiers as $cli):
+                             echo '<option value="' . $this->nettoyer($cli['ID_chantier']) . '">' 
+                              .  $this->nettoyer($cli['client'])  .'/'. $this->nettoyer($cli['chantier'])  .'</br></option>';
+                              ?>
+                       <?php endforeach; ?>
+
+            </select> 
+            </div>
+            </div>
+                <!--  
                 <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    
+                  
                <div>Client</div>
                 <select name="idclient" type="text" class="form-control" placeholder="" required>
                 <option value=""> Choix du client</option>
                                     <?php
-                                    foreach ($clients as $cli):
-                                        echo '<option value="' . $this->nettoyer($cli['ID_client']) . '">' 
-                                        .  $this->nettoyer($cli['Nom'])  . '</option>';
+                                   // foreach ($clients as $cli):
+                                        //echo '<option value="' . $this->nettoyer($cli['ID_client']) . '">' 
+                                      //  .  $this->nettoyer($cli['Nom'])  . '</option>';
                                         ?>
-                                    <?php endforeach; ?>
+                                    <?php // endforeach; ?>
 
                 </select> 
                 </div>
@@ -72,15 +89,15 @@
                 <select name="adresse" type="text" class="form-control" placeholder="" required>
                 <option style="font-weight: bold;" value="">Choix du chantier</option>
                              <?php
-                             foreach ($chantier as $cli):
-                             echo '<option  value="' . $this->nettoyer($cli['ID_chantier']) . '">' 
-                              .  $this->nettoyer($cli['Nom'])  .'/'. $this->nettoyer($cli['Adresse'])  .'</br></option>';
+                             //foreach ($chantier as $cli):
+                            // echo '<option  value="' . $this->nettoyer($cli['ID_chantier']) . '">' 
+                            ///  .  //$this->nettoyer($cli['Nom'])  .'/'. $this->nettoyer($cli['Adresse'])  .'</br></option>';
                               ?>
-                            <?php endforeach; ?>
+                            <?php //endforeach; ?>
 
                 </select> 
                 </div>
-                </div>
+                </div>--->
                <!---
                 <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">

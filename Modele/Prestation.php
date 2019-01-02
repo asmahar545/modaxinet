@@ -35,7 +35,13 @@ class Prestation extends Modele
         }
        
       }
+   
+      public function getchantiersclients(){
 
+        $sql="SELECT client.nom AS client, chantier.nom As chantier, chantier.adresse, client.ID_client,chantier.ID_chantier FROM `chantier` , client where client.ID_client = chantier.ID_client ORDER BY client.Nom ASC";
+        return $this->executerRequete($sql);
+      }
+    
       public function getchantiers(){
 
         $sql="SELECT * FROM chantier ORDER BY Nom ASC ";

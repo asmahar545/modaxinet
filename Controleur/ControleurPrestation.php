@@ -1,7 +1,6 @@
 <?php
 
 require_once 'Framework/Controleur.php';
-
 require_once 'Modele/Admin.php';
 require_once 'Modele/Prestation.php';
 require_once 'Modele/Clients.php';
@@ -30,7 +29,8 @@ class ControleurPrestation extends Controleur
 
     public function facturation()
     {
-         if ($this->requete->existeParametre("id")){
+        
+        if ($this->requete->existeParametre("id")){
         //id qui contient le mois de l'année 
         $id = $this->requete->getParametre("id");
         $client=$this->client->getClient();
@@ -101,7 +101,7 @@ class ControleurPrestation extends Controleur
 
         $client=$this->client->getClient();
         $chantier=$this->prestation->getchantiers();
-        $chantiers=$this->prestation->getchantiers();
+        $chantiers=$this->prestation->getchantiersclients();
         $email1= $this->admin->getAdminEmail();
         $nom1=$this->admin->getAdminNom();
 
@@ -193,46 +193,42 @@ public function jour(){
 
         $clients=$this->client->getClient();
         $chantier=$this->prestation->getchantiers();
-        $chantiers=$this->prestation->getchantiers();
+        $chantiers=$this->prestation->getchantiersclients();
         $email1= $this->admin->getAdminEmail();
         $nom1=$this->admin->getAdminNom();
 
         $emaila= $email1['Email'];
         $noma= $nom1['Prénom'];
             
-        
+ 
     $this->genererVue(array('chantier'=>$chantier,'chantiers'=>$chantiers,'clients'=>$clients,'email' => $emaila,'nom'=>$noma));
 
-
-
 }
+
 public function exejour(){
 
   if ($this->requete->existeParametre("extra") && $this->requete->existeParametre("description")  &&
-            $this->requete->existeParametre("idclient") && $this->requete->existeParametre("prix") 
-            && $this->requete->existeParametre("adresse") && $this->requete->existeParametre("date") 
+      $this->requete->existeParametre("idchantier") && $this->requete->existeParametre("prix") 
+       && $this->requete->existeParametre("date") 
          )  {
  
             $extra = $this->requete->getParametre("extra");
             $description = $this->requete->getParametre("description");
-            $idclient = $this->requete->getParametre("idclient");
+            $idchantier = $this->requete->getParametre("idchantier");
           
-            //adresse=id du chantier
-            $adresse=$this->requete->getParametre("adresse");
+            
+          
             $prix = $this->requete->getParametre("prix");
             $date = $this->requete->getParametre("date");
-          
-            $idChantier= $this->prestation->getAdresseChantier($adresse);
+         
+            $chantier= $this->prestation->getAdresseChantier($idchantier);
 
-            $ville= $idChantier['Nom'];
-            $adresse= $idChantier['Adresse'];
+            $ville= $chantier['Nom'];
+            $adresse= $chantier['Adresse'];
+            $idclient= $chantier['ID_client'];
             $this->prestation->ajouterPrestation($extra,$description,$adresse,$ville,$prix,$date,$idclient);
-            
-
-
-            
-             $email1= $this->admin->getAdminEmail();
-             $nom1=$this->admin->getAdminNom();
+            $email1= $this->admin->getAdminEmail();
+            $nom1=$this->admin->getAdminNom();
 
              $emaila= $email1['Email'];
              $noma= $nom1['Prénom'];
@@ -481,8 +477,8 @@ public function exeAjoutjour()
         $noma= $nom1['Prénom'];
         
 
-         $chantier=$this->prestation->getchantiers();
-        $chantiers=$this->prestation->getchantiers();
+        $chantier=$this->prestation->getchantiers();
+      $chantiers=$this->prestation->getchantiersclients();
 
         $this->genererVue(array('chantier'=>$chantier,'chantiers'=>$chantiers,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
     }
@@ -573,41 +569,43 @@ public function exeAjoutjour()
     public function exeAjout()
     {
         if ($this->requete->existeParametre("description") && 
-            $this->requete->existeParametre("idclient") &&
-            $this->requete->existeParametre("ville") &&
-            $this->requete->existeParametre("chantier") 
-            && $this->requete->existeParametre("prix") 
+            $this->requete->existeParametre("idchantier") &&
+             $this->requete->existeParametre("prix") 
             && $this->requete->existeParametre("date1") 
             && $this->requete->existeParametre("date2"))  {
 
-            $description = $this->requete->getParametre("description");
-            $idclient = $this->requete->getParametre("idclient");
-            $ville = $this->requete->getParametre("ville");
-            $chantier = $this->requete->getParametre("chantier");
-            $prix = $this->requete->getParametre("prix");
-            $date1 = $this->requete->getParametre("date1");
-            $date2 = $this->requete->getParametre("date2");
-          
-            //ajouter la dernière période
-            $this->prestation->ajouterPeriode($date1,$date2);
+          $description = $this->requete->getParametre("description");
             
-            //retourner le dernier ID périod
-            $idperiod=$this->prestation->dernierIdPeriod();
-            $idp = $idperiod['MAX(ID_period)'];
+          $idchantier = $this->requete->getParametre("idchantier");
+          $prix = $this->requete->getParametre("prix");
+          $date1 = $this->requete->getParametre("date1");
+          $date2 = $this->requete->getParametre("date2");
+          //trouver les paramètres de chantier 
+          $chantier= $this->prestation->getAdresseChantier($idchantier);
+          $ville= $chantier['Nom'];
+          $adresse= $chantier['Adresse'];
+          $idclient= $chantier['ID_client'];
+          //ajouter la dernière période
+          $this->prestation->ajouterPeriode($date1,$date2);
+            
+          //retourner le dernier ID périod
+          $idperiod=$this->prestation->dernierIdPeriod();
+          $idp = $idperiod['MAX(ID_period)'];
 
-            $begin = new DateTime($date1);
+          $begin = new DateTime($date1);
             
-            $end = new DateTime($date2);
-            $end = $end->modify( '+1 day' ); 
-            //intervalle de chaque jours, boucle à chaque jours 
-            $interval = new DateInterval('P1W');
-            $daterange = new DatePeriod($begin, $interval ,$end);
+          $end = new DateTime($date2);
+          $end = $end->modify( '+1 day' ); 
+          //intervalle de chaque jours, boucle à chaque jours 
+          $interval = new DateInterval('P1W');
+          $daterange = new DatePeriod($begin, $interval ,$end);
 
             foreach($daterange as $date){
             $datex=$date->format("Ymd");
-            //ajouter une prestation
-           // $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$datex,$idclient,$idp);
-            $this->prestation->ajouterPrestation(0,$description,$ville,$chantier,$prix,$datex,$idclient);
+          //ajouter une prestation
+          // $this->prestation->ajouterPrestation($description,$ville,$nbr_heure,$prix,$datex,$idclient,$idp);
+            $this->prestation->ajouterPrestation(0,$description,$adresse,$ville,$prix,$datex,$idclient);
+           
             }
 
              $email1= $this->admin->getAdminEmail();
@@ -629,17 +627,18 @@ public function exeAjoutjour()
  
  public function exeAjoutTrimestre()
     {
-        if ($this->requete->existeParametre("description") && $this->requete->existeParametre("ville") &&
-            $this->requete->existeParametre("chantier") && $this->requete->existeParametre("prix") 
-            && $this->requete->existeParametre("idclient") &&
-            $this->requete->existeParametre("mois") && $this->requete->existeParametre("annee"))  {
+        if ($this->requete->existeParametre("description") &&
+            $this->requete->existeParametre("idchantier") && 
+            $this->requete->existeParametre("prix") &&
+            $this->requete->existeParametre("mois") && 
+            $this->requete->existeParametre("annee"))  {
             // innitier les variables
 
             $description = $this->requete->getParametre("description");
-            $ville = $this->requete->getParametre("ville");
-            $chantier = $this->requete->getParametre("chantier");
+            
+            $idchantier = $this->requete->getParametre("idchantier");
             $prix = $this->requete->getParametre("prix");
-            $idclient = $this->requete->getParametre("idclient");
+          
             $mois = $this->requete->getParametre("mois");
             $annee = $this->requete->getParametre("annee");
           
@@ -647,9 +646,12 @@ public function exeAjoutjour()
             // Création de la date
             $datetime = new DateTime(''.$annee.'-'.$mois.'-01');
             $datex= $datetime->format('Y-m-d');
-            // ajouter la date du mois 
-           
-           
+            //ajouter la date du mois 
+            //trouver les champs de chantier 
+            $chantier= $this->prestation->getAdresseChantier($idchantier);
+            $ville= $chantier['Nom'];
+            $adresse= $chantier['Adresse'];
+            $idclient= $chantier['ID_client'];
          
 
             
@@ -660,8 +662,8 @@ public function exeAjoutjour()
              $noma= $nom1['Prénom'];
             
            
-
-            $this->prestation->ajouterPrestation(0,$description,$ville,$chantier,$prix,$datex,$idclient);
+              
+            $this->prestation->ajouterPrestation(0,$description,$adresse, $ville,$prix,$datex,$idclient);
              $this->genererVue(array('email' => $emaila,'nom'=>$noma));
             }
 

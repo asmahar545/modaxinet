@@ -32,7 +32,7 @@
         class="btn btn-sm btn-success"> <i class="fas fa-file-csv " style="font-size:20px"></i></a> 
     </span></button>
 
-      <butto>  <a href="exel.php?id=<?= $this->nettoyer($id)?>"
+    <butto>  <a href="exel.php?id=<?= $this->nettoyer($id)?>"
         class="btn btn-sm btn-primary"> <i class="fas fa-print" style="font-size:20px" ></i></a> 
     </span></button>
     <butto>  <a href="prestation/loger"
@@ -143,9 +143,9 @@
 
                 <tr>
                     <th>N°</th>
-                    
+                     <th>Ville</th>
                     <th>Description</th>
-                    <th>Ville</th>
+                   
                    
                     <th>Prix</th>
                     <th>Date</th>
@@ -169,9 +169,9 @@
             
                  
                     <td> <?php echo $i ?></td>
-                   
-                    <td><?= $this->nettoyer($prest['Description']) ?></td>
                     <td ><?= $this->nettoyer($prest['Ville']) ?></td>
+                    <td><?= $this->nettoyer($prest['Description']) ?></td>
+                    
                     <td><?= $this->nettoyer($prest['Prix']) ?> €</td>
                     <td><?= $this->nettoyer($prest['Date']) ?> </td>
                     <td><?= $this->nettoyer($prest['YEAR(date)']) ?></td>
