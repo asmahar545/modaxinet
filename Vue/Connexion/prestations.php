@@ -16,11 +16,21 @@
 
 <?php require 'Vue/_Commun/barreNavigation.php'; ?>
 <div class="row">
-    <ul class="breadcrumb">
-    <li><span class="glyphicon glyphicon-home"></span> <a >Prestations</a></li>
-     <butto>  <a href="prestation/loger"
+   
+
+<ul class="breadcrumb">
+    <li><span class="glyphicon glyphicon-home"></span> <a>Prestations</a></li>
+    
+    <butto> <a href="prestation/loger"
         class="btn btn-sm btn-warning"> <i class="fas fa-reply" style="font-size:20px" ></i></a> 
     </span></button>
+
+    <a href="prestation/jour"  alt="Ajouter des prestations par semaine"class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-plus"></span> par jour </a>
+
+    <a href="prestation"  alt="Ajouter des prestations par semaine"class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span> par semaine </a>
+    <a href="prestation/trimestre" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus"></span> par mois</a> 
+ 
+</button>
 </ul>
 
 <h2 class="text-center">Liste des prestations par mois </h2>

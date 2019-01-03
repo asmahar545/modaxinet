@@ -65,6 +65,24 @@ class Prestation extends Modele
        
       }
 
+      public function getChantierUnique($nom){
+     
+        //requete return l'adresse
+        $sql="SELECT * FROM `chantier` WHERE nom=?";
+        $req =$this->executerRequete($sql, array($nom));
+
+        //Accès à la première ligne de résultat, le nom du chantier 
+      
+        if ($req->rowCount() == 1) {
+            return $req->fetch();  
+         }
+        else {
+            throw new Exception("Aucun album ne correspond à l'identifiant ");
+        }
+
+       
+      }
+
         
       public function updatePrestation($des,$ville,$chantier,$prix,$date,$ID_client,$id)
       {
@@ -185,6 +203,28 @@ class Prestation extends Modele
 
       $sql="SELECT *, month(date_service) as mois FROM service where month(date_service)= ?";
       return $this->executerRequete($sql,array($idmois));
+    }
+
+
+   //denière enregistrement de la prestation
+
+    public function getDernierPrestationEnregistrer(){
+
+      $sql="SELECT MAX(ID_prestation) AS max FROM prestation";
+      $req =$this->executerRequete($sql);
+
+      
+      if ($req->rowCount() == 1) {
+            return $req->fetch();  // Accès à la première ligne de résultat
+        }
+
+      else 
+      {
+            throw new Exception("Probleme");
+        
+      }
+    
+
     }
 }
 

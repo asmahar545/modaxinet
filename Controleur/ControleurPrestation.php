@@ -227,13 +227,21 @@ public function exejour(){
             $adresse= $chantier['Adresse'];
             $idclient= $chantier['ID_client'];
             $this->prestation->ajouterPrestation($extra,$description,$adresse,$ville,$prix,$date,$idclient);
+
+            //Dernière enregistrement de la prestation
+
+            $prestationDernier=$this->prestation->getDernierPrestationEnregistrer();
+
+            //
+
+
             $email1= $this->admin->getAdminEmail();
             $nom1=$this->admin->getAdminNom();
 
              $emaila= $email1['Email'];
              $noma= $nom1['Prénom'];
             
-             $this->genererVue(array('email' => $emaila,'nom'=>$noma));
+             $this->genererVue(array('email' => $emaila,'nom'=>$noma,'prestationDernier'=>$prestationDernier));
             }
 
         else
@@ -243,7 +251,7 @@ public function exejour(){
 
 }
 
-
+  /// Modification d'une prestation.
     public function updateService(){
   
          if ($this->requete->existeParametre("id")){
@@ -255,17 +263,25 @@ public function exejour(){
              $email1= $this->admin->getAdminEmail();
              $nom1=$this->admin->getAdminNom();
        
-
+            //champ de la prestation
              $prestation=$this->prestation->getPrestationUnique($id);
+             // trouver le nom du chantier 
+             $chantierdelaprestation=$prestation['chantier'];
+            // trouver l'adresse, le nom, l'id du chantier correspondant à la prestation.
+             $chantierUnique=$this->prestation->getChantierUnique($chantierdelaprestation);
+
+
              $chantier=$this->prestation->getchantiers();
-             $chantiers=$this->prestation->getchantiers();
+            
+
+             $chantiers=$this->prestation->getchantiersclients();
      
      
             $emaila= $email1['Email'];
             $noma= $nom1['Prénom'];
             
         
-            $this->genererVue(array('id'=>$id,'chantier'=>$chantier,'chantiers'=>$chantiers,'prestation'=>$prestation,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
+            $this->genererVue(array('id'=>$id,'chantier'=>$chantier,'chantiers'=>$chantiers,'prestation'=>$prestation,'chantierUnique'=>$chantierUnique,'clients'=>$client,'email' => $emaila,'nom'=>$noma));
          }
 
       else
@@ -281,21 +297,26 @@ public function exeUpdatePrestation()
       if (  $this->requete->getParametre("id") &&
         $this->requete->existeParametre("date") && 
         $this->requete->existeParametre("prix") &&
-        $this->requete->existeParametre("ville") &&  
-        $this->requete->existeParametre("chantier") &&
-        $this->requete->existeParametre("idclient") &&  
+        $this->requete->existeParametre("idchantier") 
+        &&
         $this->requete->existeParametre("description") ) 
       {
 
         $id= $this->requete->getParametre("id");
         $date= $this->requete->getParametre("date");
-        $chantier= $this->requete->getParametre("chantier");
+        $idchantier= $this->requete->getParametre("idchantier");
         $prix= $this->requete->getParametre("prix");
-        $ville= $this->requete->getParametre("ville");
-        $idclient= $this->requete->getParametre("idclient");
+        //trouver Unique Chantier 
+        $chantier= $this->prestation->getAdresseChantier($idchantier);
+
+        $ville= $chantier['Nom'];
+        $adresse= $chantier['Adresse'];
+        $idclient= $chantier['ID_client'];
+        
         $description= $this->requete->getParametre("description");
         //modification
-      $this->prestation->updatePrestation($description,$ville,$chantier,$prix,$date,$idclient,$id);
+       
+        $this->prestation->updatePrestation($description,$adresse,$ville,$prix,$date,$idclient,$id);
        $email1= $this->admin->getAdminEmail();
        $nom1=$this->admin->getAdminNom();
 
